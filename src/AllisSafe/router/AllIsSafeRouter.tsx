@@ -1,7 +1,8 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
-import { RolPage, SchoolPage, UserPage } from '../pages';
+import { CityPage, CoursePage, RolPage, SchoolPage, StatePage, UserPage } from '../pages';
 import { AsideScreen, FooterScreen, NavScreen } from '../../Screens';
 import { useLocation } from 'react-router-dom';
+
 
 
 export const AllIsSafeRouter = () => {
@@ -10,6 +11,7 @@ export const AllIsSafeRouter = () => {
     let nameRutorClean=location.pathname.split('/');
     return (
         <>
+
             <NavScreen />
             <AsideScreen />
             <div className="content-wrapper">
@@ -41,14 +43,16 @@ export const AllIsSafeRouter = () => {
                             <Route path='/' element={<Navigate to='/dashboard' replace />}></Route>
                             <Route path='rol' element={<RolPage />}></Route>
                             <Route path='/school' element={<SchoolPage />}></Route>
+                            <Route path='/city' element={<CityPage />}></Route>
+                            <Route path='/state' element={<StatePage />}></Route>
+                            <Route path='/course' element={<CoursePage />}></Route>
                             <Route path='user' element={<UserPage />}></Route>
                         </Routes>
                     
                     </div>
             </div>
             <FooterScreen />
-
-
+     
         </>
     )
 }

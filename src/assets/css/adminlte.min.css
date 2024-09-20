@@ -137,7 +137,11 @@ ul ul {
 dt {
     font-weight: 700
 }
-
+.swal2-cancel .btn .btn-danger{
+    margin: 10px!important;
+    display: inline-block;
+    margin: 10px;
+}
 dd {
     margin-bottom: .5rem;
     margin-left: 0

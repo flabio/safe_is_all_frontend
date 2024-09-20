@@ -1,34 +1,21 @@
-import { useEffect, useState } from 'react';
 
 import Skeleton from 'react-loading-skeleton';
-import { ISchool } from '../../../interfaces';
-import { deteleSchoolById, querySchools } from '../../../services';
+import { ICity } from '../../../interfaces';
+import {  useCities, useDeleteCityById } from '../../../services';
 import Swal from 'sweetalert2';
 
+export const CityList =({setEditData,setFlagSelected }: any) => {
+  const {data,isLoading} = useCities()
 
-export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected }: any) => {
-  const [schools, setSchools] = useState<ISchool[]>([])
-    useEffect(() => {
-      if (testDate) {
-        setTimeout(() => {
-          getListSchools()
-        }, 1000);
-        setTestData(false)
-      }else{
-        getListSchools()
-      }
-    }, [testDate,setTestData])
-
-    const getListSchools = async () => {
-      const { data } = await querySchools()
-      setSchools(data?.data)
-    }
-    const editByIdSchoolHandler = async (school:ISchool) => {
+  const mutationDelete=useDeleteCityById()
+   
+    const editByIdCityHandler = async (city:ICity) => {
       setFlagSelected(false)
-      setSchoolData(school)
+      setEditData(city)
     }
 
-    const deleteSchoolByIdHandler = async (id: number) => {
+    const deleteRolByIdHandler = async (id: number) => {
+    
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: "btn btn-success",
@@ -51,7 +38,7 @@ export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected 
             text: "Your file has been deleted.",
             icon: "success"
           });
-          deteleSchoolById(id)
+         mutationDelete.mutate(id)
        
         
         } else if (
@@ -66,39 +53,28 @@ export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected 
         }
       });
     
-      getListSchools() 
     }
     return (
       <>
 {
         (
-          schools !== undefined ? (
+        isLoading !== undefined ? (
         <table className="table table-head-fixed text-nowrap">
           <thead>
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Email</th>
-              <th>Zip code</th>
-              <th>Provider number</th>
               <th>Option</th>
             </tr>
           </thead>
           <tbody>
-            {schools?.map((item, index) => (
+            {data?.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.phone}</td>
-                <td>{item.address}</td>
-                <td>{item.email}</td>
-                <td>{item.zip_code}</td>
-                <td>{item.provider_number}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm" onClick={()=>editByIdSchoolHandler(item)}>Edit</button>
-                  <a className="btn btn-danger btn-sm ml-2" onClick={() => deleteSchoolByIdHandler(item.id)}>Delete</a>
+                  <button className="btn btn-primary btn-sm" onClick={()=>editByIdCityHandler(item)}>Edit</button>
+                  <a className="btn btn-danger btn-sm ml-2" onClick={() => deleteRolByIdHandler(item.id)}>Delete</a>
                 </td>
               </tr>
             ))}

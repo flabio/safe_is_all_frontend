@@ -1,6 +1,6 @@
-interface IStates {
+export interface IStates {
     id:number;
     name:string;
-    cityId: number;
-    isActive: boolean;
+    city_id: number;
+    active: boolean;
 }

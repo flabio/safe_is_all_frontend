@@ -12,10 +12,9 @@ export const FormSchool = ({ setTestData, schoolData, setSchoolData }: any) => {
       setSchool(schoolData)
     }
   }, [schoolData])
-console.log(schoolData)
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(school)
+  
     if (school.id > 0) {
       editSchool(school)
       setSchoolData(school)

@@ -46,6 +46,7 @@ export const editSchool = async (school: ISchool) => {
 
 export const deteleSchoolById = async (id: number) => {
     return await allIsSafeApi.delete<any>(`/school/${id}`).then(response => {
+        querySchools()
         ToastAlert.fire({
             icon: response?.data?.status === 400 ? "info" : "success",
             title: response?.data?.message

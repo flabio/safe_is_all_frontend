@@ -46,16 +46,22 @@ export const NavComponent = () => {
           </li>
 
           <li className="nav-item">
-            <a href="#" className="nav-link">
+          <Link to="course" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>Course</p>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+          <Link to="city" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>City</p>
-            </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+          <Link to="state" className="nav-link">
+              <i className="far fa-circle nav-icon"></i>
+              <p>State</p>
+            </Link>
           </li>
         </ul>
       </nav>
