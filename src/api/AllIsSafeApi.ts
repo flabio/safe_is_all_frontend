@@ -15,7 +15,7 @@ import axios, { AxiosInstance } from 'axios';
 //     return config;
 // })
 const allIsSafeApi: AxiosInstance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://54.224.135.117",
     headers: {
         'Content-Type': 'application/json',
        'Authorization':  localStorage.getItem('token')&&` Bearer ${localStorage.getItem('token')}}` ,

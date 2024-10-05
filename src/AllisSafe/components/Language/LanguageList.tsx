@@ -7,7 +7,7 @@ import { useState } from 'react';
 export const LanguageList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const {data:languajeDatas,isLoading}=useQueryLanguages(currentPage);
-  console.log(languajeDatas)
+
 
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
@@ -70,7 +70,7 @@ export const LanguageList = () => {
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.name}</td>
-                      
+                      <td> {item.active?"Active":"Inactive"} </td>
                       <td>
                         <button className="btn btn-primary btn-sm" onClick={() => editByIdUserHandler(item)}>Edit</button>
                         <a className="btn btn-danger btn-sm ml-2" onClick={() => deleteUserByIdHandler(item.id)}>Delete</a>
