@@ -1,6 +1,6 @@
 export interface ICourse {
     id: number;
     name: string;
-    schooldid: number;
-    isActive: boolean;
+    school_id: number;
+    active: boolean;
 }

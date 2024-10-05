@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
+import { InstructorList } from '../../components';
 import { UserContext } from '../../../hook';
-import { UserList } from '../../components';
-import { UserForm } from '../../components/User/UserForm';
 
-export const UserPage = () => {
+export const InstructorPage = () => {
   const [flagSelected, setFlagSelected] = useState<boolean>(true)
   const {  setDataContext } = useContext(UserContext);
 
@@ -39,14 +38,14 @@ export const UserPage = () => {
                                   <>
                                       <div className="tab-content">
                                           <div className="card-body" >
-                                              <UserList/>
+                                              <InstructorList/>
                                           </div>
                                       </div>
                                   </>
                               ) :
                                   <>
                                       <div className="tab-content">
-                                          <UserForm />
+                                        
                                       </div>
                                   </>
                           }

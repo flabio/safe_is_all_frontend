@@ -1,21 +1,17 @@
-import React, { useState } from 'react'
-import { FormSchool, ListSchool } from '../../components';
 
+import {  useState } from 'react';
+import {  LanguageList } from '../../components';
+import { CityModel } from '../../model';
 
-const initForm = {
-  id: 0,
-  name: "",
-  active: true
-}
-export const SchoolPage = () => {
-  const [testDate, setTestData] = useState(false);
+export const LanguagePage = () => {
+
   const [flagSelected, setFlagSelected] = useState<boolean>(true)
-  const [schoolData, setSchoolData] = useState<any>(initForm)
+  const [editData, setEditData] = useState<any>(CityModel)
   const flagSelectedHandler=(flag:boolean) => {
     setFlagSelected(flag)
-    setSchoolData({})
+    setEditData({})
   }
-
+//console.log(edit)
   return (
     <>
 
@@ -26,12 +22,12 @@ export const SchoolPage = () => {
               <ul className="nav nav-pills">
                 <li className="nav-item">
                   <a className="nav-link" onClick={()=>flagSelectedHandler(true)}>
-                    <i className='fa fa-list'></i> Schools 
+                    <i className='fa fa-list'></i> Cities 
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link"  onClick={()=>flagSelectedHandler(false)}>
-                  <i className='fa fa-plus'></i>  Create School
+                  <i className='fa fa-plus'></i>  Create city
                   </a>
                 </li>
                 
@@ -43,14 +39,14 @@ export const SchoolPage = () => {
                   <>
                     <div className="tab-content">
                       <div className="card-body" >
-                        <ListSchool  setSchoolData={setSchoolData} setFlagSelected={setFlagSelected} />
+                        <LanguageList  />
                       </div>
                     </div>
                   </>
                 ) :
                   <>
                     <div className="tab-content">
-                      <FormSchool setTestData={setTestData} schoolData={schoolData} setSchoolData={setSchoolData} />
+                     <h1>Form</h1>
                     </div>
                   </>
               }

@@ -1,7 +1,9 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
-import { CityPage, CoursePage, RolPage, SchoolPage, StatePage, UserPage } from '../pages';
+import { CityPage, CoursePage, InstructorPage, LanguagePage, RolPage, SchoolPage, StatePage,  StudentPage,  UserPage } from '../pages';
 import { AsideScreen, FooterScreen, NavScreen } from '../../Screens';
 import { useLocation } from 'react-router-dom';
+
+
 
 
 
@@ -47,6 +49,9 @@ export const AllIsSafeRouter = () => {
                             <Route path='/state' element={<StatePage />}></Route>
                             <Route path='/course' element={<CoursePage />}></Route>
                             <Route path='user' element={<UserPage />}></Route>
+                            <Route path='student' element={<StudentPage />}></Route>
+                            <Route path='instructor' element={<InstructorPage/>}></Route>
+                            <Route path='language' element={<LanguagePage/>}></Route>
                         </Routes>
                     
                     </div>

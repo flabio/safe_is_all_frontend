@@ -1,5 +1,5 @@
 import allIsSafeApi from "../api/AllIsSafeApi"
-import { ApiResponse, ApiStatesResponse, IStates } from "../interfaces"
+import {  ApiStatesResponse, IStates } from "../interfaces"
 
 
 export const QueryTodosStates = async () => {

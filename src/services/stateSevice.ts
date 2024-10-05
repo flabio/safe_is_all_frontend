@@ -6,7 +6,10 @@ import { QueryAddState, QueryDeteleStateById, QueryeditStateById, QueryTodosStat
 
 //react query
 const keys = {
-    queryKeyStates: ['queryKeyStates']
+    queryKeyStates: ['queryKeyStates'],
+    queryKeyEditStateById: ['editStateById', { id: Number }],
+    queryKeyDeleteStateById: ['deleteStateById', { id: Number }],
+    queryKeyAddState: ['addState'],
 }
 
 export const useStates = () => {
@@ -78,14 +81,12 @@ export const useDeleteStateById = () => {
             });
         },
         onSuccess: (data: any,variables:any) => {
-            console.log(data)
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
                 title: data?.data?.message +" "+variables
             });
         },
         onSettled: () => {
-           
             queryClient.invalidateQueries({
                 queryKey: keys.queryKeyStates
             })

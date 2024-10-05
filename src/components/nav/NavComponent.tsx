@@ -21,23 +21,25 @@ export const NavComponent = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+          <Link to="user" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>User</p>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+          <Link to="instructor" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>Instructor</p>
-            </a>
+            </Link>
+           
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <Link to="student" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>Student</p>
-            </a>
+            </Link>
           </li>
+
           <li className="nav-item">
             <Link to="school" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
@@ -63,6 +65,13 @@ export const NavComponent = () => {
               <p>State</p>
             </Link>
           </li>
+          <li className="nav-item">
+          <Link to="language" className="nav-link">
+              <i className="far fa-circle nav-icon"></i>
+              <p>Languaje</p>
+            </Link>
+          </li>
+          
         </ul>
       </nav>
 

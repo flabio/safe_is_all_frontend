@@ -4,8 +4,14 @@ export * from './Dashboard/DashboardComponent';
 export * from './Rol/RolListComponent';
 export * from './Rol/RolForm';
 //user
-export * from './User/UserComponent';
+export * from './User/UserList';
 
+//Student
+export * from './Student/StudentList';
+export * from './Student/StudentForm';
+
+//Instructor
+export * from './Instructor/InstructorList';
 //school
 
 export * from './School/ListSchool';
@@ -23,4 +29,8 @@ export * from './State/';
 
 export * from './Course/';
 
+//language
+export * from './Language/LanguageList';
+
 //common
+

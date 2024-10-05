@@ -1,0 +1,190 @@
+
+  .item-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .item-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .page-item {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .page-item a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .page-item.active a {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  /* Estilo general */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Grid de instructores */
+.instructor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Estilo de las tarjetas de instructor */
+.instructor-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.instructor-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.instructor-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.more-options {
+  margin-left: auto;
+}
+
+.more-options i {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info i {
+  margin-right: 10px;
+  color: #ff5722;
+}
+
+.info span {
+  font-weight: bold;
+  margin-left: auto;
+}
+
+/* Pie de la tarjeta */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border-top: 1px solid #ddd;
+}
+
+.rating i {
+  color: #ffcc00;
+}
+
+.contact {
+  background-color: #17a2b8;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact i {
+  font-size: 16px;
+}
+
+/* Hover en botones */
+.contact:hover {
+  background-color: #138496;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .instructor-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .search-bar input {
+      max-width: 100%;
+  }
+}

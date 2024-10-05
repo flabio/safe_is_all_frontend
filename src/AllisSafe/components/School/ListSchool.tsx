@@ -2,27 +2,14 @@ import { useEffect, useState } from 'react';
 
 import Skeleton from 'react-loading-skeleton';
 import { ISchool } from '../../../interfaces';
-import { deteleSchoolById, querySchools } from '../../../services';
+import { deteleSchoolById, QueriesTodosSchools } from '../../../services';
 import Swal from 'sweetalert2';
 
 
-export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected }: any) => {
+export const ListSchool = ({ setSchoolData,setFlagSelected }: any) => {
   const [schools, setSchools] = useState<ISchool[]>([])
-    useEffect(() => {
-      if (testDate) {
-        setTimeout(() => {
-          getListSchools()
-        }, 1000);
-        setTestData(false)
-      }else{
-        getListSchools()
-      }
-    }, [testDate,setTestData])
+  const {data,isLoading}=QueriesTodosSchools()
 
-    const getListSchools = async () => {
-      const { data } = await querySchools()
-      setSchools(data?.data)
-    }
     const editByIdSchoolHandler = async (school:ISchool) => {
       setFlagSelected(false)
       setSchoolData(school)
@@ -66,7 +53,7 @@ export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected 
         }
       });
     
-      getListSchools() 
+   
     }
     return (
       <>
@@ -87,7 +74,7 @@ export const ListSchool = ({ testDate,setTestData,setSchoolData,setFlagSelected 
             </tr>
           </thead>
           <tbody>
-            {schools?.map((item, index) => (
+            {data?.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>

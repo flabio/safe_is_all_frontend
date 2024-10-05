@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react'
-import { UserContext } from '../../../hook';
-import { CourseForm, CourseList } from '../../components';
-import { queriesTodosCourses, QueriesTodosSchools, queriesTodosSchools } from '../../../services';
 
-export const CoursePage = () => {
+
+
+import { useContext, useState } from 'react'
+import { UserContext } from '../../../hook';
+import { StudentForm, StudentList } from '../../components';
+
+export const StudentPage = () => {
     const [flagSelected, setFlagSelected] = useState<boolean>(true)
     const {  setDataContext } = useContext(UserContext);
-    const dataCourse=queriesTodosCourses()
-    const dataSchool=QueriesTodosSchools()
-
+  
+       
+  
     const flagSelectedHandler = (flag: boolean) => {
         setFlagSelected(flag)
         setDataContext({})
@@ -22,15 +24,15 @@ export const CoursePage = () => {
                             <ul className="nav nav-pills">
                                 <li className="nav-item">
                                     <a className="nav-link" onClick={() => flagSelectedHandler(true)}>
-                                        <i className='fa fa-list'></i> Course
+                                        <i className='fa fa-list'></i> Users
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" onClick={() => flagSelectedHandler(false)}>
-                                        <i className='fa fa-plus'></i>  Create Course
+                                        <i className='fa fa-plus'></i>  Create user
                                     </a>
                                 </li>
-
+  
                             </ul>
                         </div>
                         <div className="card-body">
@@ -39,14 +41,14 @@ export const CoursePage = () => {
                                     <>
                                         <div className="tab-content">
                                             <div className="card-body" >
-                                                <CourseList dataCourse={dataCourse} />
+                                                <StudentList/>
                                             </div>
                                         </div>
                                     </>
                                 ) :
                                     <>
                                         <div className="tab-content">
-                                            <CourseForm dataSchool={dataSchool}/>
+                                            <StudentForm/>
                                         </div>
                                     </>
                             }
@@ -56,4 +58,5 @@ export const CoursePage = () => {
             </div>
         </>
     )
-}
+  }
+  

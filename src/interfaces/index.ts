@@ -4,3 +4,5 @@ export * from './ISchool';
 export * from './ICity';
 export * from './IStates';
 export * from './ICourse';
+export * from './IUser';
+export * from './ILanguaje';
