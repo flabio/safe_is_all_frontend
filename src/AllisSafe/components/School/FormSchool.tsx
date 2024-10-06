@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { createSchool, editSchool } from '../../../services';
 import { SchoolModel } from '../../model';
 

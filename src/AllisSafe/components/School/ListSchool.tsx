@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+
 
 import Skeleton from 'react-loading-skeleton';
 import { ISchool } from '../../../interfaces';
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 
 export const ListSchool = ({ setSchoolData,setFlagSelected }: any) => {
-  const [schools, setSchools] = useState<ISchool[]>([])
+  
   const {data,isLoading}=QueriesTodosSchools()
 
     const editByIdSchoolHandler = async (school:ISchool) => {
@@ -59,7 +59,7 @@ export const ListSchool = ({ setSchoolData,setFlagSelected }: any) => {
       <>
 {
         (
-          schools !== undefined ? (
+          !isLoading? (
         <table className="table table-head-fixed text-nowrap">
           <thead>
             <tr>

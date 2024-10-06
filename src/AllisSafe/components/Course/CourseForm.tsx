@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { CourseModel } from '../../model/CourseModel';
 import Skeleton from 'react-loading-skeleton';
 import { AddCourse } from '../../../services';

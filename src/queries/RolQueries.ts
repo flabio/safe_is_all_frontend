@@ -1,10 +1,10 @@
 import allIsSafeApi from "../api/AllIsSafeApi"
-import {ApiRolResponse, IRol  } from "../interfaces"
+import {ApiResponses, DataResponse, IRol  } from "../interfaces"
 
 
 
 export const QueryTodosRoles = async () => {
-    const response: ApiRolResponse = await (await allIsSafeApi.get<any>('/rol')).data
+    const response: ApiResponses<DataResponse<IRol>> = await (await allIsSafeApi.get<any>('/rol')).data
 
    return (response)
   }

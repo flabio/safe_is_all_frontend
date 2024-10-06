@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { UserContext } from '../../../hook';
 import { UserList } from '../../components';
 import { UserForm } from '../../components/User/UserForm';

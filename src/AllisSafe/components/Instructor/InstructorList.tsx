@@ -4,7 +4,7 @@ import { DeleteUser, queriesTodosInstructor } from '../../../services';
 
 export const InstructorList = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const { isLoading, data } = queriesTodosInstructor(currentPage)
+    const { isLoading, data }:any = queriesTodosInstructor(currentPage)
     const response = DeleteUser(currentPage)
   
   
@@ -21,7 +21,7 @@ export const InstructorList = () => {
       setCurrentPage(page - 1)
     };
     const onNext = (page: number) => {
-      if (data?.data?.length === undefined || data?.data?.length < 5) {
+      if (data?.length < 5) {
         setCurrentPage(page)
       } else {
         setCurrentPage(page + 1)

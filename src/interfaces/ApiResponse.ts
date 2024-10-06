@@ -1,6 +1,7 @@
 import { ICity } from "./ICity";
 import { ICourse } from "./ICourse";
-import { ILanguage } from "./ILanguaje";
+
+
 import { IRol } from "./IRol";
 import { ISchool } from "./ISchool";
 
@@ -31,4 +32,12 @@ export interface ApiResponse {
   }
   export interface ApiResponses<T>{
     data:T[];
+  }
+
+ export interface DataResponse<T> {
+    begin: number;
+    data: T[];
+    pageCount: number;
+    status: number;
+    totalCount: number;
   }

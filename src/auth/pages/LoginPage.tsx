@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import './style.css';
 import { AuthContext } from '../context';
-import { useNavigate } from 'react-router-dom';
 import { ContactComponent, FooterComponent, HeaderComponent } from '../../components/Login';
 
 export const LoginPage = () => {
   const { login }: any = useContext(AuthContext)
-  const navigate = useNavigate();
+    login('Flabio Hinestroza');
+  /*const navigate = useNavigate();
   const handleLogin = () => {
 
     login('Flabio Hinestroza');
     navigate('/', {
       replace: true,
     })
-  }
+  }*/
+
   return (
     <>
       <HeaderComponent />

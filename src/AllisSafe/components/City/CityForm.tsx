@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { CityModel } from '../../model';
 import { AddCityData, useEditCityBydId } from '../../../services';
 

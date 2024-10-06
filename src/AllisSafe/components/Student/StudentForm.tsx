@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch, TextField } from '@mui/material';
+import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch } from '@mui/material';
 import Icon from '@mui/material/Icon';
 import { UserModel } from '../../model/';
 import { AddUser, queriesTodosRol, useStates } from '../../../services';
@@ -158,7 +158,7 @@ export const StudentForm = () => {
                 id="outlined-adornment-rol"
                 name='rol_id'
                 value={user.rol_id}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               >
                 {rols?.data?.map((rol: any) => (
                   <MenuItem key={rol.id} value={rol.id}>{rol.name}</MenuItem>
@@ -228,7 +228,7 @@ export const StudentForm = () => {
                 }
                 label="Password"
                 name='password_confirmation'
-                value={user.password_confirmation}
+                value={user.password}
                 onChange={handleChange}
               />
             </FormControl>

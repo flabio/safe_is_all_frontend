@@ -7,6 +7,7 @@ export const LanguagePage = () => {
 
   const [flagSelected, setFlagSelected] = useState<boolean>(true)
   const [editData, setEditData] = useState<any>(CityModel)
+  console.log(editData)
   const flagSelectedHandler=(flag:boolean) => {
     setFlagSelected(flag)
     setEditData({})

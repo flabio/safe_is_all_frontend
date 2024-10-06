@@ -96,7 +96,7 @@ const AddCityData = () => {
         title: data?.data?.message
       });
     },
-    onSettled:async(data:any) => {
+    onSettled:async() => {
 
     await  queryClient.invalidateQueries({
         queryKey: keys.queryKeyCities
@@ -145,7 +145,7 @@ const useDeleteCityById = () => {
         title: err.message
       });
     },
-    onSuccess: (data: any) => {
+    onSuccess: () => {
       console.log("success")
       // ToastAlert.fire({
       //   icon: data?.status === 400 ? "info" : "success",

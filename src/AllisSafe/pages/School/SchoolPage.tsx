@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { FormSchool, ListSchool } from '../../components';
 
 
@@ -9,6 +9,7 @@ const initForm = {
 }
 export const SchoolPage = () => {
   const [testDate, setTestData] = useState(false);
+  console.log(testDate);
   const [flagSelected, setFlagSelected] = useState<boolean>(true)
   const [schoolData, setSchoolData] = useState<any>(initForm)
   const flagSelectedHandler=(flag:boolean) => {

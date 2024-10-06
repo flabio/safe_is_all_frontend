@@ -4,7 +4,7 @@ import { DeleteUser, queriesTodosUser } from '../../../services/UserService';
 
 export const UserList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { isLoading, data } = queriesTodosUser(currentPage)
+  const { isLoading, data }:any = queriesTodosUser(currentPage)
   const response = DeleteUser(currentPage)
 
 

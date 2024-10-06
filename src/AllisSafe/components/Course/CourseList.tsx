@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Skeleton from 'react-loading-skeleton';
 import { DeleteCourse } from '../../../services';
 
@@ -13,6 +13,7 @@ export const CourseList = ({dataCourse}:any) => {
     //...
   };
   const editByIdCourseHandler = (course: any) => {
+    console.log(course)
     //...
   };
   return (

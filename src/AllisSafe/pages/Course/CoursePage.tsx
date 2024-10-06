@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { UserContext } from '../../../hook';
 import { CourseForm, CourseList } from '../../components';
-import { queriesTodosCourses, QueriesTodosSchools, queriesTodosSchools } from '../../../services';
+import { queriesTodosCourses, QueriesTodosSchools } from '../../../services';
 
 export const CoursePage = () => {
     const [flagSelected, setFlagSelected] = useState<boolean>(true)

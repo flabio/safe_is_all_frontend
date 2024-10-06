@@ -18,7 +18,7 @@ export const RolListComponent = ({ testDate,setTestData,setRolGData,setFlagSelec
     }, [testDate,setTestData])
 
     const getListRoles = async () => {
-      const { data } = await queryRoles()
+      const { data }:any = await queryRoles()
       setRolData(data?.data)
     }
     const editByIdRolHandler = async (rol:IRol) => {

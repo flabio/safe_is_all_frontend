@@ -1,19 +1,18 @@
 
 import { useQueryLanguages } from '../../../services'
 import Skeleton from 'react-loading-skeleton';
-import { ILanguage } from '../../../interfaces';
+import {  ILanguage,  } from '../../../interfaces';
 import { useState } from 'react';
 
 export const LanguageList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const {data:languajeDatas,isLoading}=useQueryLanguages(currentPage);
-
-
+  const {data:languajeDatas,isLoading}:any=useQueryLanguages(currentPage);
+ 
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
   };
   const onNext = (page: number) => {
-    if (languajeDatas?.data?.length === undefined || languajeDatas?.data?.length < 5) {
+    if (languajeDatas.length < 5) {
       setCurrentPage(page)
     } else {
       setCurrentPage(page + 1)
@@ -83,7 +82,7 @@ export const LanguageList = () => {
               <hr />
               <div className='d-flex justify-content-between'>
                 <span>
-                  total records: <b>{languajeDatas?.totalCount}</b>
+                  total records: <b>{languajeDatas?.totalCount || 0}</b>
                 </span>
                 <nav aria-label="...">
                   <ul className="pagination justify-content-center">
