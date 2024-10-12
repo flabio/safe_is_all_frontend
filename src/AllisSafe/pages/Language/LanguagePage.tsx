@@ -14,6 +14,7 @@ export const LanguagePage = () => {
   const flagSelectedHandler=(flag:boolean) => {
     setFlagSelected(flag)
     setEditData({})
+    console.log(editData)
   }
 //console.log(edit)
   return (

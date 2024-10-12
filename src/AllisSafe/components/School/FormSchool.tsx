@@ -1,12 +1,12 @@
 import  { useEffect, useState } from 'react'
-import { createSchool, editSchool } from '../../../services';
+import { createSchool } from '../../../services';
 import { SchoolModel } from '../../model';
-import { ISchool } from '../../../interfaces';
 
 
 
 
-export const FormSchool = ({ setTestData, schoolData, setSchoolData }: any) => {
+
+export const FormSchool = ({  schoolData }: any) => {
   const [school, setSchool] = useState<any>(SchoolModel);
   const [file, setFile] = useState(null);
   useEffect(() => {

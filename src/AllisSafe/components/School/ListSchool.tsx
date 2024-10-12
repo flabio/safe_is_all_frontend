@@ -6,7 +6,7 @@ import { DeleteSchoolById, QueriesTodosSchools } from '../../../services';
 import Swal from 'sweetalert2';
 import "./style.css";
 import { useState } from 'react';
-import { Avatar, Button, Card, DialogActions, DialogContent, DialogTitle, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Avatar, Button, Card,  DialogContent, DialogTitle, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
@@ -14,7 +14,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ImageIcon from '@mui/icons-material/Image';
+
 import BusinessIcon from '@mui/icons-material/Business';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -35,19 +35,22 @@ export const ListSchool = ({ setSchoolData, setFlagSelected }: any) => {
   const [open, setOpen] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('sm');
-  const [schoolInfo, setSchoolInfo] = useState('');
+  const [schoolInfo, setSchoolInfo] = useState<any>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = QueriesTodosSchools(currentPage)
+  const { data, isLoading }:any = QueriesTodosSchools(currentPage)
 
   const queryDeteleSchool = DeleteSchoolById(currentPage)
 
   const editByIdSchoolHandler = async (school: ISchool) => {
     setFlagSelected(false)
     setSchoolData(school)
+    //para borar
+    setFullWidth(true)
+    setMaxWidth('sm')
   }
-  const infoSchoolModalHandler = (school: ISchool) => {
-    console.log(school)
-  }
+  // const infoSchoolModalHandler = (school: ISchool) => {
+  //   console.log(school)
+  // }
 
   const deleteSchoolByIdHandler = async (id: number) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -101,7 +104,7 @@ export const ListSchool = ({ setSchoolData, setFlagSelected }: any) => {
       setCurrentPage(currentPage + page)
     }
   }
-  const handleClickOpen = (school: ISchool) => {
+  const handleClickOpen = (school: any) => {
     setOpen(true);
     setSchoolInfo(school);
   };
@@ -136,7 +139,7 @@ export const ListSchool = ({ setSchoolData, setFlagSelected }: any) => {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          <Card sx={{ maxWidth: fullWidth }}>
+          <Card sx={{ maxWidth: 'sm' }}>
             <CardMedia
               sx={{ height: 200 }}
               image={schoolInfo?.url}
@@ -194,7 +197,7 @@ export const ListSchool = ({ setSchoolData, setFlagSelected }: any) => {
               <Button size="small" color='success' startIcon={<EditIcon />}
                 onClick={() => editByIdSchoolHandler(schoolInfo)}>Edit</Button>
               <Button size="small" color='error' startIcon={<DeleteIcon />}
-                onClick={() => editByIdSchoolHandler(item)}>Remove</Button>
+                onClick={() => editByIdSchoolHandler(schoolInfo.id)}>Remove</Button>
               <Button color='inherit' autoFocus onClick={handleClose} startIcon={<CancelIcon />}>
                 Close
               </Button>
@@ -240,18 +243,18 @@ export const ListSchool = ({ setSchoolData, setFlagSelected }: any) => {
                           <Button
                             className="btn btn-primary btn-sm"
                             startIcon={<ListAltIcon />}
-                            onClick={() => handleClickOpen(item)}>
+                            onClick={() => handleClickOpen(row)}>
                             Info
                           </Button>
                           <Button
                             className="btn btn-success btn-sm ml-1"
                             color="success"
                             startIcon={<EditIcon />}
-                            onClick={() => editByIdSchoolHandler(item)}>
+                            onClick={() => editByIdSchoolHandler(row)}>
 
                             Edit
                           </Button>
-                          <Button className="btn btn-danger ml-1" color="error" onClick={() => deleteSchoolByIdHandler(item.id)} startIcon={<DeleteIcon />}>
+                          <Button className="btn btn-danger ml-1" color="error" onClick={() => deleteSchoolByIdHandler(row.id)} startIcon={<DeleteIcon />}>
                             Remove
                           </Button>
                         </TableCell>

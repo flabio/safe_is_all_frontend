@@ -162,7 +162,7 @@ export const UserForm = () => {
                 id="outlined-adornment-rol"
                 name='rol_id'
                 value={user.rol_id}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               >
                 {rols?.data?.map((rol: any) => (
                   <MenuItem key={rol.id} value={rol.id}>{rol.name}</MenuItem>

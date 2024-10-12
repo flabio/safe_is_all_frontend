@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { DeleteCourse } from '../../../services';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, CardMedia, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button,  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export const CourseList = ({dataCourse}:any) => {
   const { isLoading, data } = dataCourse;

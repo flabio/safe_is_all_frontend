@@ -174,7 +174,7 @@ export const StudentForm = () => {
                 id="outlined-adornment-state"
                 name='state_id'
                 value={user.state_id}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               >
                 {states?.map((state: any) => (
                   <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>

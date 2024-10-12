@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CourseModel } from '../../model/CourseModel';
-import Skeleton from 'react-loading-skeleton';
+
 import { AddCourse } from '../../../services';
 
 export const CourseForm = () => {
