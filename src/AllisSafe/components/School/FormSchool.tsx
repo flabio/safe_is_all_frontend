@@ -1,38 +1,70 @@
 import  { useEffect, useState } from 'react'
 import { createSchool, editSchool } from '../../../services';
 import { SchoolModel } from '../../model';
+import { ISchool } from '../../../interfaces';
 
 
 
 
 export const FormSchool = ({ setTestData, schoolData, setSchoolData }: any) => {
-  const [school, setSchool] = useState(SchoolModel);
+  const [school, setSchool] = useState<any>(SchoolModel);
+  const [file, setFile] = useState(null);
   useEffect(() => {
     if (schoolData.id > 0) {
       setSchool(schoolData)
     }
   }, [schoolData])
+  const handleFileChange = (e: any) => {
+    setFile(e.target.files[0]);
+  }
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-  
-    if (school.id > 0) {
-      editSchool(school)
-      setSchoolData(school)
-    } else {
-      createSchool(school)
-      setSchool(SchoolModel)
+    const data = new FormData();
 
+    for (const key in school){  
+      console.log(key);
+        data.append(key, school[key as keyof any]);
     }
+     // Agregar el archivo al objeto FormData
+     if (file) {
+      data.append("file", file);
+      console.log(file)
+    }
+    console.log(data);
+    createSchool(data)
+    // if (school.id > 0) {
+    //   editSchool(school)
+    //   setSchoolData(school)
+    // } else {
+    //   createSchool(school)
+    //   setSchool(SchoolModel)
 
-    setTestData(true)
+    // }
+
+    // setTestData(true)
 
   }
+ 
   return (
     <>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
 
         <div className="card-body">
+        <div className="row">
+            <div className="col-sm-12">
+              <div className="form-group">
+                <label htmlFor="inputName">imagen:</label>
+                <input type="file"
+                name='file'
+                  className="form-control"
+                  placeholder="Enter name"
+                  onChange={handleFileChange}
+                />
+              </div>
+            </div>
+          </div>
+
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">

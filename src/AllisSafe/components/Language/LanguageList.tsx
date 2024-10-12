@@ -1,13 +1,16 @@
 
-import { useQueryLanguages } from '../../../services'
+
 import Skeleton from 'react-loading-skeleton';
 import {  ILanguage,  } from '../../../interfaces';
-import { useState } from 'react';
 
-export const LanguageList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const {data:languajeDatas,isLoading}:any=useQueryLanguages(currentPage);
+
+export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages}:any) => {
+  //const [currentPage, setCurrentPage] = useState(1);
+ // const {data:languajeDatas,isLoading}:any=useQueryLanguages(currentPage);
+ //const [currentPage, setCurrentPage] = useState(1);
  
+ const {data:languajeDatas,isLoading}:any=useQueryTodosLanguages;
+
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
   };

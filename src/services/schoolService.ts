@@ -1,6 +1,6 @@
 
 import Swal from 'sweetalert2';
-import allIsSafeApi from '../api/AllIsSafeApi';
+import allIsSafeApi, { allIsSafeFormDataApi } from '../api/AllIsSafeApi';
 
 import { ToastAlert } from '../AllisSafe/helpers';
 import { ISchool } from '../interfaces';
@@ -11,8 +11,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 export const queriesTodosSchools = async () => await allIsSafeApi.get<ISchool[]>('/school')
 
 
-export const createSchool = async (school: ISchool) => {
-    return await allIsSafeApi.post<any>('/school', { ...school }).then(response => {
+export const createSchool = async (school: any) => {
+    return await allIsSafeFormDataApi.post<any>('/school', school ).then(response => {
         ToastAlert.fire({
             icon: response?.status === 400 ? "info" : "success",
             title: response?.data?.message
@@ -70,10 +70,10 @@ const keys={
     queryKeyAddSchool: ['addSchool'],
  };
 
- export const QueriesTodosSchools=() => {
+ export const QueriesTodosSchools=(page:number) => {
     return useQuery({
-        queryKey: keys.queryKeySchool,
-        queryFn: QueryTodosSchool,
+        queryKey: [keys.queryKeySchool,page],
+        queryFn:()=> QueryTodosSchool(page),
     })
  }
 export const addSchool=() => {
@@ -121,7 +121,7 @@ export const EditSchool=() => {
     })
 }
 
-export const DeleteSchoolById=() => {
+export const DeleteSchoolById=(page:number) => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (id: number) => QueryDeteleSchoolById(id),
@@ -139,7 +139,7 @@ export const DeleteSchoolById=() => {
         },
         onSettled: () => {
             queryClient.invalidateQueries({
-                queryKey: keys.queryKeySchool
+                queryKey: [keys.queryKeySchool,page]
             })
         }
     });

@@ -1,13 +1,12 @@
 import  { useContext, useState } from 'react'
 import { UserContext } from '../../../hook';
 import { CourseForm, CourseList } from '../../components';
-import { queriesTodosCourses, QueriesTodosSchools } from '../../../services';
+import { queriesTodosCourses } from '../../../services';
 
 export const CoursePage = () => {
     const [flagSelected, setFlagSelected] = useState<boolean>(true)
     const {  setDataContext } = useContext(UserContext);
     const dataCourse=queriesTodosCourses()
-    const dataSchool=QueriesTodosSchools()
 
     const flagSelectedHandler = (flag: boolean) => {
         setFlagSelected(flag)
@@ -46,7 +45,7 @@ export const CoursePage = () => {
                                 ) :
                                     <>
                                         <div className="tab-content">
-                                            <CourseForm dataSchool={dataSchool}/>
+                                            <CourseForm/>
                                         </div>
                                     </>
                             }

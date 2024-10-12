@@ -1,8 +1,8 @@
 import allIsSafeApi from "../api/AllIsSafeApi"
 import { ApiResponses,  DataResponse, ISchool } from "../interfaces"
 
-export const QueryTodosSchool = async () => {
-    const response:  ApiResponses<DataResponse<ISchool>> = await (await allIsSafeApi.get<any>('/school')).data
+export const QueryTodosSchool = async (page:number) => {
+    const response:  ApiResponses<DataResponse<ISchool>> = await (await allIsSafeApi.get<any>(`/school/?page=${page}`))
    return (response).data
   }
 export  const QueryAddSchool = async (data: ISchool) =>  await allIsSafeApi.post(`/school`, { ...data })

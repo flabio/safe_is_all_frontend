@@ -3,10 +3,10 @@ import { CourseModel } from '../../model/CourseModel';
 import Skeleton from 'react-loading-skeleton';
 import { AddCourse } from '../../../services';
 
-export const CourseForm = ({dataSchool}:any) => {
+export const CourseForm = () => {
   const [course, setCourse] = useState(CourseModel);
   const courseMutation=AddCourse()
-  const {data,isLoading}=dataSchool;
+
 
 const handleSubmit=(e:any) => {
   e.preventDefault();
@@ -16,13 +16,13 @@ const handleSubmit=(e:any) => {
   return (
   
      <>
-      {
-        (
-          isLoading !== undefined ? (
+      
+    
+         
             <form onSubmit={handleSubmit}>
               <div className="card-body">
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-sm-12">
                     <div className="form-group">
                       <label htmlFor="inputName">Name</label>
                       <input type="text"
@@ -34,18 +34,7 @@ const handleSubmit=(e:any) => {
                       />
                     </div>
                   </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="inputName">Course</label>
-                      <select className="form-control" name="school_id" onChange={(e) => setCourse({ ...course, school_id: parseInt(e.target.value) })}>
-
-                        <option value="">Select</option>
-                        {data?.map((course: any) => (
-                          <option key={course.id} value={course.id}>{course.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+             
                 </div>
               </div>
               <div className="card-footer">
@@ -53,11 +42,10 @@ const handleSubmit=(e:any) => {
 
               </div>
             </form>
-          )
-            : <><Skeleton count={100} />
-            </>)
+          
+          
 
-      }
+      
 
     </>
   )

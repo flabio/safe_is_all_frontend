@@ -15,11 +15,21 @@ import axios, { AxiosInstance } from 'axios';
 //     return config;
 // })
 const allIsSafeApi: AxiosInstance = axios.create({
-    baseURL: "http://54.209.35.4:3080",
+    baseURL: "http://localhost:3080",
     headers: {
         'Content-Type': 'application/json',
        'Authorization':  localStorage.getItem('token')&&` Bearer ${localStorage.getItem('token')}}` ,
     },
 });
 
+
 export default allIsSafeApi;
+
+export const allIsSafeFormDataApi: AxiosInstance = axios.create({
+    baseURL: "http://localhost:3080",
+    headers: {
+        "Content-Type": "multipart/form-data",
+       'Authorization':  localStorage.getItem('token')&&` Bearer ${localStorage.getItem('token')}}` ,
+    },
+});
+

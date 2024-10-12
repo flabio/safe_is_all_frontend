@@ -2,12 +2,15 @@
 import {  useState } from 'react';
 import {  LanguageList } from '../../components';
 import { CityModel } from '../../model';
+import { useQueryLanguages } from '../../../services';
 
 export const LanguagePage = () => {
-
+ 
+  const [currentPage, setCurrentPage] = useState(1);
   const [flagSelected, setFlagSelected] = useState<boolean>(true)
   const [editData, setEditData] = useState<any>(CityModel)
-  console.log(editData)
+  const useQueryTodosLanguages:any=useQueryLanguages(currentPage);
+  
   const flagSelectedHandler=(flag:boolean) => {
     setFlagSelected(flag)
     setEditData({})
@@ -40,7 +43,7 @@ export const LanguagePage = () => {
                   <>
                     <div className="tab-content">
                       <div className="card-body" >
-                        <LanguageList  />
+                        <LanguageList currentPage={currentPage} setCurrentPage={setCurrentPage} useQueryTodosLanguages={useQueryTodosLanguages} />
                       </div>
                     </div>
                   </>

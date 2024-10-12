@@ -1,0 +1,87 @@
+.hr-car{
+    color: white;
+    background-color: white;
+}
+
+.profile-card {
+    background-color: #2c2f33;
+    color: white;
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+}
+
+.header-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.info h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.info p {
+    margin: 0;
+    color: #b0b0b0;
+}
+
+.details {
+    margin-bottom: 20px;
+}
+
+.payments, .course {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    background-color: #40444b;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress {
+    background-color: #7289da;
+    height: 100%;
+}
+
+.progress-text {
+    text-align: right;
+    font-size: 0.9em;
+    color: #b0b0b0;
+}
+
+.footer-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+button {
+    background-color: #7289da;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.card-body {
+    align-items: center;
+    font-size: 0.9em;
+}

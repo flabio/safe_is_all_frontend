@@ -1,5 +1,6 @@
 export const  SchoolModel={
     id : 0,
+    
     name : "",
     email :"",
     address :"" ,

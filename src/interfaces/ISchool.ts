@@ -1,5 +1,6 @@
 export interface ISchool{
          id : number;
+         url:string;
          name : string;
          email :string;
          address :string ;
