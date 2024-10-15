@@ -28,8 +28,8 @@ export const createSchool = async (school: any) => {
     });
 }
 
-export const editSchool = async (school: ISchool) => {
-    return await allIsSafeApi.put<any>(`/school/${school.id}`, { ...school }).then(response => {
+export const editSchool = async (id:number,school: any) => {
+    return await allIsSafeFormDataApi.put<any>(`/school/${id}`, school ).then(response => {
         ToastAlert.fire({
             icon: response?.status === 400 ? "info" : "success",
             title: response?.data?.message

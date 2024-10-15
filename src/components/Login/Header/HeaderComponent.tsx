@@ -5,7 +5,7 @@ export const HeaderComponent = () => {
     <>
         <div className="header">
         <div className="logo-header">
-            <img src="/src/assets/img/ogo.png" alt="Logo"/>
+            <img src="/img/ogo.png" alt="Logo"/>
         </div>
        
     </div>

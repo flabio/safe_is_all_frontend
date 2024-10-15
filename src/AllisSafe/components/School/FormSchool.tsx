@@ -1,8 +1,6 @@
 import  { useEffect, useState } from 'react'
-import { createSchool } from '../../../services';
+import { createSchool, editSchool } from '../../../services';
 import { SchoolModel } from '../../model';
-
-
 
 
 
@@ -22,7 +20,6 @@ export const FormSchool = ({  schoolData }: any) => {
     const data = new FormData();
 
     for (const key in school){  
-      console.log(key);
         data.append(key, school[key as keyof any]);
     }
      // Agregar el archivo al objeto FormData
@@ -30,16 +27,14 @@ export const FormSchool = ({  schoolData }: any) => {
       data.append("file", file);
       console.log(file)
     }
-    console.log(data);
-    createSchool(data)
-    // if (school.id > 0) {
-    //   editSchool(school)
-    //   setSchoolData(school)
-    // } else {
-    //   createSchool(school)
-    //   setSchool(SchoolModel)
+    if (school.id > 0) {
+      editSchool(school.id,data)
+     // setSchoolData(school)
+    } else {
+      createSchool(data)
+      //setSchool(SchoolModel)
 
-    // }
+    }
 
     // setTestData(true)
 
