@@ -1,13 +1,48 @@
-import  { useContext, useState } from 'react'
+import { SyntheticEvent, useContext, useState } from 'react'
 import { UserContext } from '../../../hook';
 import { CourseForm, CourseList } from '../../components';
 import { queriesTodosCourses } from '../../../services';
 
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+        </div>
+    );
+}
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 export const CoursePage = () => {
     const [flagSelected, setFlagSelected] = useState<boolean>(true)
-    const {  setDataContext } = useContext(UserContext);
-    const dataCourse=queriesTodosCourses()
+    const { setDataContext } = useContext(UserContext);
+    const dataCourse = queriesTodosCourses()
+    const [value, setValue] = useState(0);
 
+    const handleChange = (event: SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
     const flagSelectedHandler = (flag: boolean) => {
         setFlagSelected(flag)
         setDataContext({})
@@ -17,42 +52,26 @@ export const CoursePage = () => {
             <div className='row'>
                 <div className="col-12">
                     <div className="card card-orange">
-                        <div className="card-header p-2">
-                            <ul className="nav nav-pills">
-                                <li className="nav-item">
-                                    <a className="nav-link" onClick={() => flagSelectedHandler(true)}>
-                                        <i className='fa fa-list'></i> Course
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" onClick={() => flagSelectedHandler(false)}>
-                                        <i className='fa fa-plus'></i>  Create Course
-                                    </a>
-                                </li>
+                        <Box sx={{ width: '100%' }}>
+                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                                    <Tab label="Lists" {...a11yProps(0)} />
+                                    <Tab label="Create" {...a11yProps(1)} />
 
-                            </ul>
-                        </div>
-                        <div className="card-body">
-                            {
-                                flagSelected ? (
-                                    <>
-                                        <div className="tab-content">
-                                            <div className="card-body" >
-                                                <CourseList dataCourse={dataCourse} />
-                                            </div>
-                                        </div>
-                                    </>
-                                ) :
-                                    <>
-                                        <div className="tab-content">
-                                            <CourseForm/>
-                                        </div>
-                                    </>
-                            }
-                        </div>
+                                </Tabs>
+                            </Box>
+                            <CustomTabPanel value={value} index={0}>
+                                <CourseList dataCourse={dataCourse} />
+                            </CustomTabPanel>
+                            <CustomTabPanel value={value} index={1}>
+                                <CourseForm />
+                            </CustomTabPanel>
+
+                        </Box>
                     </div>
                 </div>
             </div>
+           
         </>
     )
 }

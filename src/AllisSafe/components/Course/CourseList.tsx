@@ -1,17 +1,25 @@
 
 import Skeleton from 'react-loading-skeleton';
+import { Avatar,Button, Card,  DialogContent, DialogTitle, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+
+
 import { DeleteCourse } from '../../../services';
 import EditIcon from '@mui/icons-material/Edit';
+import TopicIcon from '@mui/icons-material/Topic';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button,  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { TopicListAndForm } from './TopicListAndForm';
+import { useState } from 'react';
+
+
 
 export const CourseList = ({dataCourse}:any) => {
   const { isLoading, data } = dataCourse;
+ const [topic,setTopic]=useState('');
+ const [open, setOpen] = useState(false);
   const deleteMutation=DeleteCourse()
 
   const deleteCourseByIdHandler = async (id: number) => {
     //...
-    console.log(id)
     deleteMutation.mutate(id)
     //...
   };
@@ -19,9 +27,17 @@ export const CourseList = ({dataCourse}:any) => {
     console.log(course)
     //...
   };
+  const topicHandler = (course: any) => {
+    setTopic(course)
+    setOpen(true);
+    //...
+  };
+
   return (
     <>
  
+ <TopicListAndForm  open={open} setOpen={setOpen} topic={topic} setTopic={setTopic} />
+
       {
         (
           !isLoading ? (
@@ -46,7 +62,14 @@ export const CourseList = ({dataCourse}:any) => {
                         </TableCell>
                        
                         <TableCell align='center'>
-                     
+                     <Button
+                     color="inherit"
+                      startIcon={<TopicIcon/>}
+                     onClick={() => topicHandler(row)}
+                     >
+                      Topic
+
+                     </Button>
                           <Button
                             className="btn btn-success btn-sm ml-1"
                             color="success"
