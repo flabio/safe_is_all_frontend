@@ -3,6 +3,10 @@ import { StateModel } from "../../model";
 import Skeleton from "react-loading-skeleton";
 import { useAddState, useEditStateBydId } from "../../../services";
 import { UserContext } from "../../../hook";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { Button, Icon, Switch } from '@mui/material';
+import './index.css';
 
 export const StateForm = ({ cityData }: any) => {
   const {dataContext} = useContext(UserContext);
@@ -32,6 +36,46 @@ export const StateForm = ({ cityData }: any) => {
       {
         (
           isLoading !== undefined ? (
+<>
+            <Box
+   component="form"
+        onSubmit={handleSubmit}
+        sx={{ width: 500, maxWidth: '100%' }}>
+       <div className='row'>
+       <div className='col-6'>
+        <TextField
+          fullWidth
+          label="Name"
+          id="fullWidth"
+          name='name'
+          value={state.name}
+          onChange={(e) => setState({ ...state, name: e.target.value })}
+        />
+        </div>
+        <div className='col-6'>
+      <TextField
+          fullWidth
+          label="Time"
+          id="fullWidth"
+          name='zip_ode'
+          value={state.zip_code}
+          onChange={(e) => setState({ ...state, zip_code: e.target.value })}
+        />
+     </div>
+            </div>
+            <br/>
+        <div className='course-button'>
+        <Switch
+             checked={state.active}
+              onChange={(e)=> setState({...state,active: e.target.checked})}
+              inputProps={{ 'aria-label': 'controlled' }}
+              name='active'
+            /> 
+          <Button variant="contained" type='submit'>
+            <Icon>save</Icon> Save
+          </Button>
+      </div>
+      </Box>
             <form onSubmit={handleSubmit}>
               <div className="card-body">
                 <div className="row">
@@ -44,6 +88,18 @@ export const StateForm = ({ cityData }: any) => {
                         name='name'
                         value={state.name}
                         onChange={(e) => setState({ ...state, name: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="form-group">
+                      <label htmlFor="inputName">Zip Code</label>
+                      <input type="text"
+                        className="form-control"
+                        placeholder="Enter zip code"
+                        name='zip_code'
+                        value={state.name}
+                        onChange={(e) => setState({ ...state, zip_code: e.target.value })}
                       />
                     </div>
                   </div>
@@ -66,8 +122,9 @@ export const StateForm = ({ cityData }: any) => {
 
               </div>
             </form>
+            </>
           )
-            : <><Skeleton count={100} />
+            : <><Skeleton count={4} />
             </>)
 
       }

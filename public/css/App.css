@@ -3,3 +3,18 @@
     display: inline-block;
     margin: 10px;
 }
+
+.course-form{
+    display: flex;
+    margin: 10px;
+}
+.course-button{
+
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.MuiBox-root .css-1gyr8kh{
+    max-width: 100%!important;
+    width: 100%!important;
+}

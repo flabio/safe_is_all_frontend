@@ -29,8 +29,13 @@ export * from './State/';
 
 export * from './Course/';
 
+//topic
+
+export * from './TopicClass/';
 //language
 export * from './Language/LanguageList';
 
 //common
+
+export * from './Common/';
 

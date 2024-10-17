@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { StateForm, StateList } from '../../components'
 
 import { useCities, useStates } from '../../../services'
-import { UserContext } from '../../../hook'
+import { UserContext } from '../../../hook';
 
 export const StatePage = () => {
   const { data, isLoading } = useStates()

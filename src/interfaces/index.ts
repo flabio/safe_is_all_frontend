@@ -6,3 +6,4 @@ export * from './IStates';
 export * from './ICourse';
 export * from './IUser';
 export * from './ILanguaje';
+export * from './ITopic';
