@@ -5,12 +5,12 @@ import { AllIsSafeRouter } from "../AllisSafe";
 
 export const AppRouter = () => {
   const authStatus = localStorage.getItem('token') ? 'authenticated' : 'not-authenticated';
-
+console.log(authStatus)
   return (
     <>
       <Routes>
         {/* Si el usuario no está autenticado, lo redirige a la página de login */}
-        {authStatus === 'not-authenticated' ? (
+        {authStatus !== 'authenticated' ? (
           <Route path="auth/login/*" element={<LoginPage />} />
         ) : (
           <>

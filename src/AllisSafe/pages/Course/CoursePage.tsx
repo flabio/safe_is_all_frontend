@@ -1,52 +1,24 @@
-import { SyntheticEvent, useContext, useState } from 'react'
-import { UserContext } from '../../../hook';
+import { SyntheticEvent, useState } from 'react'
+
 import { CourseForm, CourseList } from '../../components';
 import { queriesTodosCourses } from '../../../services';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
 
-function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-}
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+
 export const CoursePage = () => {
-    const [flagSelected, setFlagSelected] = useState<boolean>(true)
-    const { setDataContext } = useContext(UserContext);
     const dataCourse = queriesTodosCourses()
     const [value, setValue] = useState(0);
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    const flagSelectedHandler = (flag: boolean) => {
-        setFlagSelected(flag)
-        setDataContext({})
-    }
+    
     return (
         <>
             <div className='row'>

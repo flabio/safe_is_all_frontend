@@ -1,68 +1,50 @@
-import { useContext, useEffect, useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import { StateForm, StateList } from '../../components'
 
 import { useCities, useStates } from '../../../services'
-import { UserContext } from '../../../hook';
+
+
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
+
 
 export const StatePage = () => {
   const { data, isLoading } = useStates()
+  const [value, setValue] = useState(0);
+
+
   const cityData=useCities()
-  const [flagSelected, setFlagSelected] = useState<boolean>(true)
-  const {dataContext,setDataContext} = useContext(UserContext);
-  
-  useEffect(()=>{
-    if(dataContext?.id>0){
-      setFlagSelected(false)
-    }
-  },[dataContext])
-  const flagSelectedHandler = (flag: boolean) => {
-    setFlagSelected(flag)
-    if(flag) {
-      setDataContext("")
-      setFlagSelected(flag)
-    } 
-  }
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+};
   return (
     <>
-    <div className='row'>
-        <div className="col-12">
-          <div className="card card-orange">
-            <div className="card-header p-2">
-              <ul className="nav nav-pills">
-                <li className="nav-item">
-                  <a className="nav-link" onClick={() => flagSelectedHandler(true)}>
-                    <i className='fa fa-list'></i> States
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" onClick={() => flagSelectedHandler(false)}>
-                    <i className='fa fa-plus'></i>  Create state
-                  </a>
-                </li>
+     <div className='row'>
+                <div className="col-12">
+                    <div className="card card-orange">
+                        <Box sx={{ width: '100%' }}>
+                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                                    <Tab label="Lists" {...a11yProps(0)} />
+                                    <Tab label="Create" {...a11yProps(1)} />
 
-              </ul>
-            </div>
-            <div className="card-body">
-              {
-                flagSelected ? (
-                  <>
-                    <div className="tab-content">
-                      <div className="card-body" >
-                        <StateList data={data} isLoading={isLoading}  />
-                      </div>
+                                </Tabs>
+                            </Box>
+                            <CustomTabPanel value={value} index={0}>
+                            <StateList data={data} isLoading={isLoading}  />
+                            </CustomTabPanel>
+                            <CustomTabPanel value={value} index={1}>
+                                <StateForm cityData={cityData} />
+                            </CustomTabPanel>
+
+                        </Box>
                     </div>
-                  </>
-                ) :
-                  <>
-                    <div className="tab-content">
-                      <StateForm cityData={cityData} />
-                    </div>
-                  </>
-              }
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+    
     </>
   )
 }

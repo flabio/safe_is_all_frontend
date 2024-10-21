@@ -85,3 +85,7 @@ button {
     align-items: center;
     font-size: 0.9em;
 }
+
+.list-item{
+    display: inline-flex;
+}

@@ -1,5 +1,11 @@
-import  { useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
+
 import { FormSchool, ListSchool } from '../../components';
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
 
 
 const initForm = {
@@ -8,57 +14,46 @@ const initForm = {
   active: true
 }
 export const SchoolPage = () => {
-  const [testDate, setTestData] = useState(false);
-  console.log(testDate);
-  const [flagSelected, setFlagSelected] = useState<boolean>(true)
-  const [schoolData, setSchoolData] = useState<any>(initForm)
-  const flagSelectedHandler=(flag:boolean) => {
-    setFlagSelected(flag)
-    setSchoolData({})
-  }
 
+ 
+
+  const [schoolData, setSchoolData] = useState(initForm)
+console.log(schoolData)
+  const [value, setValue] = useState(0);
+
+
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+    setSchoolData(initForm)
+};
   return (
     <>
+     <div className='row'>
+                <div className="col-12">
+                    <div className="card card-orange">
+                        <Box sx={{ width: '100%' }}>
+                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                                    <Tab label="Lists" {...a11yProps(0)} />
+                                    <Tab label={`${schoolData?.id>0?"Editar":"Create"}`} {...a11yProps(1)} />
 
-      <div className='row'>
-        <div className="col-12">
-          <div className="card card-orange">
-            <div className="card-header p-2">
-              <ul className="nav nav-pills">
-                <li className="nav-item">
-                  <a className="nav-link" onClick={()=>flagSelectedHandler(true)}>
-                    <i className='fa fa-list'></i> Schools 
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link"  onClick={()=>flagSelectedHandler(false)}>
-                  <i className='fa fa-plus'></i>  Create School
-                  </a>
-                </li>
-                
-              </ul>
-            </div>
-            <div className="card-body">
-              {
-                flagSelected ? (
-                  <>
-                    <div className="tab-content">
-                      <div className="card-body" >
-                        <ListSchool  setSchoolData={setSchoolData} setFlagSelected={setFlagSelected} />
-                      </div>
+                                </Tabs>
+                            </Box>
+                            <CustomTabPanel value={value} index={0}>
+                            <ListSchool setValue={setValue}  setSchoolData={setSchoolData}  />
+                  
+                            </CustomTabPanel>
+                            <CustomTabPanel value={value} index={1}>
+                            <FormSchool schoolData={schoolData} />
+            
+                            </CustomTabPanel>
+
+                        </Box>
                     </div>
-                  </>
-                ) :
-                  <>
-                    <div className="tab-content">
-                      <FormSchool setTestData={setTestData} schoolData={schoolData} setSchoolData={setSchoolData} />
-                    </div>
-                  </>
-              }
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+
     </>
   )
 }
