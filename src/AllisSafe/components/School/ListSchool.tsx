@@ -10,7 +10,7 @@ import { Avatar, Box, Button, Card, Collapse, DialogContent, DialogTitle, IconBu
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
-import CardActions from '@mui/material/CardActions';
+
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -22,14 +22,14 @@ import RepeatOneOnIcon from '@mui/icons-material/RepeatOneOn';
 import FiberPinIcon from '@mui/icons-material/FiberPin';
 import EditIcon from '@mui/icons-material/Edit';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import CancelIcon from '@mui/icons-material/Cancel';
+
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+
 import { SchoolWithCourses } from './SchoolWithCourses';
+import { SchoolModel } from '../../model';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -38,13 +38,13 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-export const ListSchool = ({ setValue, setSchoolData }) => {
+export const ListSchool = ({ setValue, setSchoolData }:any) => {
 
   const [open, setOpen] = useState(false);
   const [openTopic, setOpenTopic] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('md');
-  const [schoolInfo, setSchoolInfo] = useState("");
+  const [schoolInfo, setSchoolInfo] = useState(SchoolModel);
   const [currentPage, setCurrentPage] = useState(1);
   const [school, setSchool] = useState(0);
   const [openSchool, setOpenSchool] = useState(false);
@@ -234,7 +234,7 @@ export const ListSchool = ({ setValue, setSchoolData }) => {
                   </TableHead>
                   <TableBody>
                     {
-                      coursesSchool.data?.map((course: any) => course.course_schools[0]?.school_id === schoolInfo.id && (
+                      coursesSchool.data?.map((course: any) => course.course_schools[0]?.school_id === schoolInfo?.id && (
                         <>
                           <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                             <TableCell>
@@ -268,7 +268,7 @@ export const ListSchool = ({ setValue, setSchoolData }) => {
                                     </TableHead>
                                     <TableBody>
                                       {
-                                        course.course_schools && course.course_schools?.map((item, index) => (
+                                        course.course_schools && course.course_schools?.map((item:any, index:any) => (
                                           <>
                                             <TableRow key={index}>
                                               <TableCell component="th" scope="row">

@@ -162,8 +162,11 @@ export const UserForm = () => {
                 id="outlined-adornment-rol"
                 name='rol_id'
                 value={user.rol_id}
-                
-                onChange={(e) => setUser({ ...user, rol_id: e.target.value })}
+                onChange={(e) => {
+                  const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
+                  setUser({ ...user, rol_id: value });
+                }}
+              
               >
                 {rols?.data?.map((rol: any) => (
                   <MenuItem key={rol.id} value={rol.id}>{rol.name}</MenuItem>
@@ -179,7 +182,10 @@ export const UserForm = () => {
                 id="outlined-adornment-state"
                 name='state_id'
                 value={user.state_id}
-                onChange={(e) => setUser({ ...user, state_id: e.target.value })}
+                onChange={(e) => {
+                  const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
+                  setUser({ ...user, state_id: value });
+                }}
               >
                 {states?.map((state: any) => (
                   <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>

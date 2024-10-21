@@ -61,7 +61,11 @@ export const StateForm = ({ cityData }: any) => {
                       label="City"
                       name='city_id'
                       value={state.city_id}
-                      onChange={(e) => setState({ ...state, city_id: e.target.value })}
+                  
+                      onChange={(e) => {
+                        const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
+                        setState({...state, city_id: value });
+                      }}
                     >
                       {data?.map((city: any) => (
                         <MenuItem key={city.id} value={city.id}>{city.name}</MenuItem>

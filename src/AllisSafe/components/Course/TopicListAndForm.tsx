@@ -1,27 +1,16 @@
-import { SyntheticEvent, useState } from 'react';
+
 import { styled } from '@mui/material/styles';
-import BusinessIcon from '@mui/icons-material/Business';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
-import RepeatOneOnIcon from '@mui/icons-material/RepeatOneOn';
-import FiberPinIcon from '@mui/icons-material/FiberPin';
-import CancelIcon from '@mui/icons-material/Cancel';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import TopicIcon from '@mui/icons-material/Topic';
-import { Avatar, Button, Card, DialogContent, DialogTitle, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import {  DialogContent, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { FormTopic, ListTopic } from '../TopicClass';
+import { useState } from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -67,8 +56,11 @@ export const TopicListAndForm = ({ open, setOpen, topic, setTopic }: any) => {
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('lg');
   const handleClose = () => {
     setOpen(false);
+    setMaxWidth('md');
+    setFullWidth(true);
+    setTopic({ course_id: 0, school_id: 0 });
   };
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const handleChange = ( newValue: number) => {
     setValue(newValue);
   };
   return (
@@ -99,7 +91,7 @@ export const TopicListAndForm = ({ open, setOpen, topic, setTopic }: any) => {
         <DialogContent dividers>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+              <Tabs className='card-header' value={value} onChange={()=>handleChange} aria-label="basic tabs example">
                 <Tab label="Lists" {...a11yProps(0)} />
                 <Tab label="Create" {...a11yProps(1)} />
 

@@ -9,5 +9,6 @@ export const  SchoolModel={
     provider_number :"" ,
     state_id : 4 ,
     active : true,
+    url: "",
 
 }

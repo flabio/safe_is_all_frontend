@@ -2,8 +2,7 @@
 import Skeleton from 'react-loading-skeleton';
 import {  Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+
 import { DeleteCourse } from '../../../services';
 import EditIcon from '@mui/icons-material/Edit';
 import TopicIcon from '@mui/icons-material/Topic';

@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 
 import { useEffect, useState } from 'react';
-import { AddCourseSchool, DeleteCourseSchool, queriesTodosCoursesSchool } from '../../../services';
+import { AddCourseSchool, DeleteCourseSchool } from '../../../services';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -24,17 +24,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export const SchoolWithCourses = ({coursesSchool, school, openSchool, setOpenSchool }) => {
+export const SchoolWithCourses = ({coursesSchool, school, openSchool, setOpenSchool }:any) => {
 
   const { data, isLoading } = coursesSchool
 
   const addSchool = AddCourseSchool()
-  const [courses, setCourses] = useState();
   const deleteSchool = DeleteCourseSchool()
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('md');
 
   const [course, setCourse] = useState({
+  
     course_id: 0,
     school_id: 0
   });
@@ -47,12 +47,14 @@ export const SchoolWithCourses = ({coursesSchool, school, openSchool, setOpenSch
 
   useEffect(() => {
     if (course.course_id > 0) {
-      addSchool.mutate({ ...course })
+      addSchool.mutate({ ...course,
+        id: 0, 
+        active: true 
+         })
     }
   }, [course]);
-  console.log("Courses")
-  console.log(courses)
-  const handleChange = (row) => {
+ 
+  const handleChange = (row:any) => {
 console.log(row?.course_schools)
     if (row?.course_schools[0]?.school_id===school.id) {
       deleteSchool.mutate(row?.course_schools[0].id)
@@ -101,14 +103,14 @@ console.log(row?.course_schools)
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.map((row) => (
+                  {data?.map((row:any) => (
                     <TableRow key={row.id}>
                       <TableCell component="th" scope="row">
                         {row.name}
                       </TableCell>
                       <TableCell style={{ width: 160 }} >
                         {
-                          row.course_schools?.length > 0 ? row.course_schools?.map((item) => (
+                          row.course_schools?.length > 0 ? row.course_schools?.map((item:any) => (
                             <>
                               <Checkbox
                                 checked={item?.school_id === school.id ? true : false}

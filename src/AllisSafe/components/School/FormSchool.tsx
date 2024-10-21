@@ -4,7 +4,7 @@ import { SchoolModel } from '../../model';
 
 
 
-export const FormSchool = ({  schoolData }) => {
+export const FormSchool = ({  schoolData }:any) => {
   const [school, setSchool] = useState(SchoolModel);
   const [file, setFile] = useState(null);
   useEffect(() => {
@@ -20,7 +20,7 @@ export const FormSchool = ({  schoolData }) => {
     const data = new FormData();
 
     for (const key in school){  
-        data.append(key, school[key as keyof any]);
+      data.append(key, school[key as keyof typeof school] as string);
     }
      // Agregar el archivo al objeto FormData
      if (file) {

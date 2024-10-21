@@ -19,6 +19,7 @@ export const StatePage = () => {
   const cityData=useCities()
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    console.log(event.target)
 };
   return (
     <>

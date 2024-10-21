@@ -26,6 +26,7 @@ console.log(schoolData)
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
     setSchoolData(initForm)
+    console.log(event)
 };
   return (
     <>
