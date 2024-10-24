@@ -3,7 +3,7 @@ export const UserModel={
     imagen:"",
     first_name:"",
     first_sur_name:"",
-    second_sur_name:"",
+    secon_sur_name:"",
     address:"",
     phone:"",
     zip_code:"",

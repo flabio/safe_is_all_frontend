@@ -15,10 +15,11 @@ export interface IUser {
 }
 
 export interface IUserRequest {
+    id:number;
     imagen:string;
     first_name:string;
     first_sur_name:string;
-    second_sur_name:string;
+    secon_sur_name:string;
     email:string;
     address:string;
     phone:string;

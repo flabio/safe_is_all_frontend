@@ -1,27 +1,41 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch } from '@mui/material';
 import Icon from '@mui/material/Icon';
 import { UserModel } from '../../model/';
-import { AddUser, queriesTodosRol, useStates } from '../../../services';
+import { AddUser, EditUser, queriesTodosRol, useStates } from '../../../services';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-
+import { UserContext } from '../../../hook';
 
 
 export const UserForm = () => {
+  const { dataContext } = useContext(UserContext)
+
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useState(UserModel);
-  const useMutationAddUser=AddUser();
+  const [file, setFile] = useState(null);
+  const useMutationAddUser = AddUser();
+  const udpateUserMutation = EditUser()
   const { data: rols } = queriesTodosRol();
   const { data: states } = useStates();
- 
+
+  useEffect(() => {
+    if (dataContext?.id > 0) {
+      setUser(dataContext)
+    } else {
+      setUser(UserModel)
+    }
+  }, [dataContext])
+  const handleFileChange = (e: any) => {
+    setFile(e.target.files[0]);
+  }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     const { name, value } = event.target;
     setChecked(event.target.checked)
-    user.active=event.target.type==="checkbox"?event.target.checked:false
+    user.active = event.target.type === "checkbox" ? event.target.checked : false
     setUser({ ...user, [name]: value });
   };
 
@@ -34,11 +48,23 @@ export const UserForm = () => {
   const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(user);
-  
-    useMutationAddUser.mutate({...user});
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData();
+
+    for (const key in user) {
+      data.append(key, user[key as keyof typeof user] as string);
+    }
+    if (file) {
+      data.append("file", file);
+    }
+    if (user.id > 0) {
+      udpateUserMutation.mutate({ id: user.id, data });
+    } else {
+      useMutationAddUser.mutate(data);
+
+    }
+
   };
 
   return (
@@ -50,8 +76,19 @@ export const UserForm = () => {
           sx={{ '& .MuiTextField-root': { m: 1, p: 1, width: '45ch' } }}
           noValidate
           autoComplete="off"
+          encType="multipart/form-data">
 
-        >
+          <div>
+            <FormControl sx={{ m: 2, minWidth: '100%' }} variant="outlined">
+              <OutlinedInput
+                id="outlined-adornment-first-name"
+                type='file'
+                name='file'
+                onChange={handleFileChange}
+              />
+            </FormControl>
+
+          </div>
           <div>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-first-name">First Name</InputLabel>
@@ -74,17 +111,17 @@ export const UserForm = () => {
                 placeholder='Enter Second Name'
               />
             </FormControl>
-      
+
 
           </div>
           <div>
-          <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-first-sur-name">First Sur Name</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-first-sur-name"
                 type={'text'}
                 label="1. Last Name"
-            
+
                 name='first_sur_name'
                 value={user.first_sur_name}
                 onChange={handleChange}
@@ -96,26 +133,26 @@ export const UserForm = () => {
                 id="outlined-adornment-second-sur-name"
                 type={'text'}
                 label="2. Last Name"
-                name='second_sur_name'
-              value={user.second_sur_name}
-              onChange={handleChange}
+                name='secon_sur_name'
+                value={user.secon_sur_name}
+                onChange={handleChange}
               />
             </FormControl>
-  
+
 
           </div>
           <div>
-          <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-address">Address</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-address"
                 type={'text'}
-                  name='address'
+                name='address'
                 value={user.address}
                 onChange={handleChange}
               />
             </FormControl>
-  
+
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-phone">Phone</InputLabel>
               <OutlinedInput
@@ -126,7 +163,7 @@ export const UserForm = () => {
                 onChange={handleChange}
               />
             </FormControl>
- 
+
           </div>
           <div>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
@@ -156,7 +193,7 @@ export const UserForm = () => {
 
           <div>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel  htmlFor="outlined-adornment-rol">Rol</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-rol">Rol</InputLabel>
               <Select
                 label="Rol"
                 id="outlined-adornment-rol"
@@ -166,10 +203,10 @@ export const UserForm = () => {
                   const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
                   setUser({ ...user, rol_id: value });
                 }}
-              
+
               >
                 {rols?.data?.map((rol: any) => (
-                  <MenuItem key={rol.id} value={rol.id}>{rol.name}</MenuItem>
+                  <MenuItem key={rol?.id} value={rol?.id}>{rol?.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -243,16 +280,16 @@ export const UserForm = () => {
                 onChange={handleChange}
               />
             </FormControl>
-     
+
           </div>
-<div>
-<Switch
-             checked={checked}
+          <div>
+            <Switch
+              checked={checked}
               onChange={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
               name='active'
             />
-</div>
+          </div>
 
 
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

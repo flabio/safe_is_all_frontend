@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {  QueryAddUser,  QueryDeteleUserById,  QueryeditUserById,  QueryTodosInstructor,  QueryTodosStudents,  QueryTodosUsers } from "../queries";
 import {  IUser, IUserRequest } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
+import { allIsSafeFormDataApi } from "../api/AllIsSafeApi";
+import Swal from "sweetalert2";
 
 
 const keys={
@@ -37,11 +39,13 @@ const keys={
    
     });
  }
+
+ 
  // keepPreviousData: true 
 export const AddUser=() => {
     const queryClient= useQueryClient();
     return useMutation({
-        mutationFn: (course: IUserRequest) => QueryAddUser(course),
+        mutationFn: (data: FormData) => QueryAddUser(data),
       
         onSuccess: (data: any) => {
             ToastAlert.fire({
@@ -62,11 +66,14 @@ export const AddUser=() => {
         },
     })
 }
-
+type EditUserVariables = {
+    id: number;
+    data: FormData;
+};
 export const EditUser=() => {
     const queryClient= useQueryClient();
     return useMutation({
-        mutationFn: (course: IUser) => QueryeditUserById(course),
+        mutationFn: ( {id, data}:EditUserVariables) => QueryeditUserById(id, data),
       
         onSuccess: (data: any) => {
             ToastAlert.fire({
@@ -87,6 +94,8 @@ export const EditUser=() => {
         },
     })
 }
+
+
 
 export const DeleteUser=(page:number) => {
     const queryClient = useQueryClient();

@@ -51,7 +51,7 @@ export const RolForm = ({ setTestData, rolGData,setRolGData }: any) => {
 
         <div className="card-footer">
           {
-            rolGData !== undefined ? (
+            rolGData === undefined ? (
               <>
                 <button type="submit" className="btn btn-primary">Edit</button>
               </>

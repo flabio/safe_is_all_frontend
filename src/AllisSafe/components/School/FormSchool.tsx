@@ -22,6 +22,7 @@ export const FormSchool = ({  schoolData }:any) => {
     for (const key in school){  
       data.append(key, school[key as keyof typeof school] as string);
     }
+  
      // Agregar el archivo al objeto FormData
      if (file) {
       data.append("file", file);
@@ -38,6 +39,7 @@ export const FormSchool = ({  schoolData }:any) => {
     // setTestData(true)
 
   }
+
  
   return (
     <>
@@ -143,7 +145,7 @@ export const FormSchool = ({  schoolData }:any) => {
         </div>
         <div className="card-footer">
           {
-            schoolData?.id !== undefined ? (
+            schoolData?.id > 0 ? (
               <>
                 <button type="submit" className="btn btn-primary">Edit</button>
               </>
