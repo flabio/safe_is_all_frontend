@@ -7,22 +7,22 @@ export const FooterPage = () => {
             <div className="footer bg-dark pt-5 pb-4 pb-lg-5" data-bs-theme="dark">
                 <div className="content-circle">
                     <div className="box-circle">
-                        <img src="img/IMG-20240802-WA0082.jpg" alt="Image" />
+                        <img src="/img/IMG-20240802-WA0082.jpg" alt="Image" />
                     </div>
                     <div className="box-circle">
-                        <img src="img/IMG-20240802-WA0049.jpg" alt="Image" />
+                        <img src="/img/IMG-20240802-WA0049.jpg" alt="Image" />
                     </div>
                     <div className="box-circle">
-                        <img src="img/IMG-20240802-WA0040.jpg" alt="Image" />
+                        <img src="/img/IMG-20240802-WA0040.jpg" alt="Image" />
                     </div>
                     <div className="box-circle">
-                        <img src="img/IMG-20240802-WA0043.jpg" alt="Image" />
+                        <img src="/img/IMG-20240802-WA0043.jpg" alt="Image" />
                     </div>
                 </div>
                 <div className="box-border"> </div>
                 <div className="footer-square">
                     <div className="box-footer">
-                        <img src="./img/ogo.png" className="img" />
+                        <img src="/img/ogo.png" className="img" />
                         <p>
                             Proin ipsum pharetra, senectus eget scelerisque varius pretium platea velit. Lacus, eget eu vitae
                             nullam

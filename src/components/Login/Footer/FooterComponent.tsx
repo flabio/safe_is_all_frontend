@@ -8,17 +8,17 @@ export const FooterComponent = () => {
             
             <div className="box-circle">
                
-                <img src="/src/assets/img/IMG-20240802-WA0082.jpg" alt="Image"/>
+                <img src="/img/IMG-20240802-WA0082.jpg" alt="Image"/>
                 <span>Title</span>
             </div>
             <div className="box-circle">
-                <img src="/src/assets/img/IMG-20240802-WA0049.jpg" alt="Image"/>
+                <img src="/img/IMG-20240802-WA0049.jpg" alt="Image"/>
             </div>
             <div className="box-circle">
-                <img src="/src/assets/img/IMG-20240802-WA0040.jpg" alt="Image"/>
+                <img src="/img/IMG-20240802-WA0040.jpg" alt="Image"/>
             </div>
             <div className="box-circle">
-                <img src="/src/assets/img/IMG-20240802-WA0043.jpg" alt="Image" />
+                <img src="/img/IMG-20240802-WA0043.jpg" alt="Image" />
             </div>
     
         </div>

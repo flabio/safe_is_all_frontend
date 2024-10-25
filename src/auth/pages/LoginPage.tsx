@@ -20,7 +20,7 @@ export const LoginPage = () => {
       <HeaderComponent />
       <div className="content">
         <div className="box">
-          <img src="/src/assets/img/IMG-20240802-WA0082.jpg" alt="Image" />
+          <img src="/img/IMG-20240802-WA0082.jpg" alt="Image" />
         </div>
         <div className="box">
           <ContactComponent />
