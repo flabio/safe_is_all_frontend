@@ -10,7 +10,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { FormTopic, ListTopic } from '../TopicClass';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -60,7 +60,8 @@ export const TopicListAndForm = ({ open, setOpen, topic, setTopic }: any) => {
     setFullWidth(true);
     setTopic({ course_id: 0, school_id: 0 });
   };
-  const handleChange = ( newValue: number) => {
+  const handleChange = ( event: SyntheticEvent ,newValue: number) => {
+    event.preventDefault();
     setValue(newValue);
   };
   return (
@@ -91,7 +92,7 @@ export const TopicListAndForm = ({ open, setOpen, topic, setTopic }: any) => {
         <DialogContent dividers>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs className='card-header' value={value} onChange={()=>handleChange} aria-label="basic tabs example">
+              <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="Lists" {...a11yProps(0)} />
                 <Tab label="Create" {...a11yProps(1)} />
 

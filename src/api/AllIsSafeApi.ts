@@ -16,7 +16,7 @@ const BASE_URL = "http://34.207.102.227:3080"
 //     return config;
 // })
 const allIsSafeApi: AxiosInstance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json',
        'Authorization':  localStorage.getItem('token')&&` Bearer ${localStorage.getItem('token')}}` ,
@@ -27,7 +27,7 @@ const allIsSafeApi: AxiosInstance = axios.create({
 export default allIsSafeApi;
 
 export const allIsSafeFormDataApi: AxiosInstance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: import.meta.env.VITE_API_URL,
     headers: {
         "Content-Type": "multipart/form-data",
        'Authorization':  localStorage.getItem('token')&&` Bearer ${localStorage.getItem('token')}}` ,

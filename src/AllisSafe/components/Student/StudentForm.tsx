@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch } from '@mui/material';
 import Icon from '@mui/material/Icon';
 import { UserModel } from '../../model/';
-import { AddUser, queriesTodosRol, useStates } from '../../../services';
+import {  queriesTodosRol, useStates } from '../../../services';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 
@@ -12,7 +12,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 export const StudentForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState(UserModel);
-  const useMutationAddUser=AddUser();
+ // const useMutationAddUser=AddUser();
   const { data: rols } = queriesTodosRol();
   const { data: states } = useStates();
  
@@ -34,7 +34,7 @@ export const StudentForm = () => {
     event.preventDefault();
     console.log(user);
   
-    useMutationAddUser.mutate({...user});
+   // useMutationAddUser.mutate({...user});
   };
 
   return (
@@ -93,7 +93,7 @@ export const StudentForm = () => {
                 type={'text'}
                 label="2. Last Name"
                 name='second_sur_name'
-              value={user.second_sur_name}
+              value={user.secon_sur_name}
               onChange={handleChange}
               />
             </FormControl>

@@ -1,6 +1,6 @@
 export const UserModel={
     id:0,
-    imagen:"",
+    avatar:"",
     first_name:"",
     first_sur_name:"",
     secon_sur_name:"",
@@ -11,6 +11,8 @@ export const UserModel={
     rol_id:0,
     email:"",
     password:"",
+    rol_name:"",
+    state_name:"",
     //password_confirmation:"",
     active:true
 }

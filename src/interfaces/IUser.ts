@@ -15,8 +15,11 @@ export interface IUser {
 }
 
 export interface IUserRequest {
+    state_name: string;
+    rol_name: string;
     id:number;
-    imagen:string;
+
+    avatar:string;
     first_name:string;
     first_sur_name:string;
     secon_sur_name:string;

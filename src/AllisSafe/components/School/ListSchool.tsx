@@ -48,7 +48,7 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [school, setSchool] = useState(0);
   const [openSchool, setOpenSchool] = useState(false);
-  const { data, isLoading }: any = QueriesTodosSchools(currentPage)
+  const { data, isLoading } = QueriesTodosSchools(currentPage)
   const coursesSchool = queriesTodosCoursesSchool()
 
   const queryDeteleSchool = DeleteSchoolById(currentPage)
@@ -118,14 +118,14 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
       setCurrentPage(currentPage + page)
     }
   }
-  const handleClickOpen = (school: any) => {
+  const handleClickOpen = (school) => {
     setOpen(true);
     setSchoolInfo(school);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const handleClickAddCourseOpen = (row: any) => {
+  const handleClickAddCourseOpen = (row) => {
 
     setOpenSchool(true);
     setSchool(row)
@@ -234,7 +234,7 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                   </TableHead>
                   <TableBody>
                     {
-                      coursesSchool.data?.map((course: any) => course.course_schools[0]?.school_id === schoolInfo?.id && (
+                      coursesSchool.data?.map((course) => course.course_schools[0]?.school_id === schoolInfo?.id && (
                         <>
                           <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                             <TableCell>
@@ -316,7 +316,7 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data?.data?.map((row: any) => (
+                    {data?.data?.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

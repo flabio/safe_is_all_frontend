@@ -6,7 +6,7 @@ import { IRol } from "./IRol";
 import { ISchool } from "./ISchool";
 
 import { IStates } from "./IStates";
-import { IUser } from "./IUser";
+import {  IUserRequest } from "./IUser";
 
 
 export interface ApiResponse {
@@ -25,7 +25,7 @@ export interface ApiResponse {
   }
 
   export interface ApiUserResponse {
-    data: IUser[];
+    data: IUserRequest[];
   }
   export interface ApiRolResponse {
     data: IRol[];

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import {  useContext, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,12 +10,12 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+
 import { DeleteUser, queriesTodosUser } from '../../../services/UserService';
 import { UserContext } from '../../../hook';
 import { Avatar, Button,  Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { UserModel } from '../../model';
+import { IUserRequest } from '../../../interfaces';
 
 
 
@@ -23,12 +23,12 @@ import { Avatar, Button,  Dialog, DialogActions, DialogContent, DialogContentTex
 export const UserList = ({ setValue }) => {
   const { setDataContext } = useContext(UserContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const [user,setUser] = useState();
+  const [user,setUser] = useState<IUserRequest>(UserModel);
   const [open, setOpen] = useState(false);
-  const { isLoading, data }: any = queriesTodosUser(currentPage)
+  const { isLoading, data } = queriesTodosUser(currentPage)
 
 
-  const detaildUserHandler = (row:any) => {
+  const detaildUserHandler = (row: IUserRequest) => {
     setOpen(true);
     setUser(row);
   };
@@ -45,7 +45,7 @@ export const UserList = ({ setValue }) => {
 
     response.mutate(id)
   };
-  const editByIdUserHandler = (user: any) => {
+  const editByIdUserHandler = (user: IUserRequest) => {
     setDataContext(user)
     setValue(1)
 
@@ -170,8 +170,8 @@ export const UserList = ({ setValue }) => {
                           
                           <Avatar alt={row?.first_name} src={row?.avatar} variant="rounded" />
                         </TableCell>
-                        <TableCell align="left">{row.first_name}</TableCell>
-                        <TableCell align="left">{row.first_sur_name} {row.secon_sur_name}</TableCell>
+                        <TableCell align="left">{row?.first_name}</TableCell>
+                        <TableCell align="left">{row?.first_sur_name} {row.secon_sur_name}</TableCell>
                         <TableCell align="left">{row.phone}</TableCell>
                     
                        

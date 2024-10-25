@@ -1,6 +1,6 @@
 import allIsSafeApi, { allIsSafeFormDataApi } from "../api/AllIsSafeApi"
 import {ApiUserResponse,  } from "../interfaces"
-import { IUser, IUserRequest } from "../interfaces/IUser"
+
 
 
 export const QueryTodosUsers = async (page:number) => {

@@ -16,7 +16,8 @@ export const UserPage = () => {
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
-        setDataContext({})
+        setDataContext({})  
+        console.log(event)
   
        
     };

@@ -8,6 +8,7 @@ export const  SchoolModel={
     zip_code : "",
     provider_number :"" ,
     state_id : 4 ,
+    url:"",
     active : true,
     
 }

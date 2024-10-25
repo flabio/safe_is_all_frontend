@@ -17,7 +17,7 @@ export const CoursePage = () => {
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
-        console.log(event)
+     
     };
     
     return (

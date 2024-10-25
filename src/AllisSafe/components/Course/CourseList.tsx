@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 
 
-export const CourseList = ({ dataCourse }: any) => {
+export const CourseList = ({ dataCourse }) => {
   const { isLoading, data } = dataCourse;
   const [topic, setTopic] = useState('');
   const [open, setOpen] = useState(false);

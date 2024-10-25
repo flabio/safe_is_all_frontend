@@ -1,9 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {  QueryAddUser,  QueryDeteleUserById,  QueryeditUserById,  QueryTodosInstructor,  QueryTodosStudents,  QueryTodosUsers } from "../queries";
-import {  IUser, IUserRequest } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
-import { allIsSafeFormDataApi } from "../api/AllIsSafeApi";
-import Swal from "sweetalert2";
+
 
 
 const keys={
