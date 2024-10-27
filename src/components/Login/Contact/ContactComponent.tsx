@@ -29,7 +29,7 @@ export const ContactComponent = () => {
     const handlerLogin = (e:any) => {
          e.preventDefault()
         postLogin(login).then((data) => {
-            console.log(data);
+           
         });
      
     }

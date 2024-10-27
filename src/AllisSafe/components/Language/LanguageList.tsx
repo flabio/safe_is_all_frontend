@@ -2,14 +2,18 @@
 
 import Skeleton from 'react-loading-skeleton';
 import {  ILanguage,  } from '../../../interfaces';
-
-
-export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages}:any) => {
+import { useContext } from 'react';
+import { UserContext } from '../../../hook';
+import { Table, Button, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages,setValue}:any) => {
   //const [currentPage, setCurrentPage] = useState(1);
  // const {data:languajeDatas,isLoading}:any=useQueryLanguages(currentPage);
  //const [currentPage, setCurrentPage] = useState(1);
- 
- const {data:languajeDatas,isLoading}:any=useQueryTodosLanguages;
+ const { setDataContext } = useContext(UserContext);
+ const {data:languajeDatas,isLoading}=useQueryTodosLanguages;
+
 
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
@@ -22,7 +26,8 @@ export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages}
     }
   }
   const editByIdUserHandler=(row:ILanguage)=>{
-    console.log(row)
+    setDataContext(row)
+    setValue(1)
   }
   const deleteUserByIdHandler=(id:number)=>{
     console.log(id)
@@ -34,54 +39,50 @@ export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages}
         (
           !isLoading ? (
             <>
-              <div className='d-flex justify-content-between m-2'>
-                <select className='col-2 form-control'>
-                  <option>
-                    5
-                  </option>
-                  <option>
-                    10
-                  </option>
-                  <option>
-                    20
-                  </option>
-                  <option>
-                    50
-                  </option>
-                  <option>
-                    10
-                  </option>
-                </select>
-                <form>
-                  <input type='search' placeholder='search user' className='form-control' />
-                </form>
-
-              </div>
-              
-              <table className="table table-head-fixed text-nowrap">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>IsActive</th>
-                    <th>Option</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {languajeDatas?.data?.map((item: any) => (
-                    <tr key={item.id}>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                      <td> {item.active?"Active":"Inactive"} </td>
-                      <td>
-                        <button className="btn btn-primary btn-sm" onClick={() => editByIdUserHandler(item)}>Edit</button>
-                        <a className="btn btn-danger btn-sm ml-2" onClick={() => deleteUserByIdHandler(item.id)}>Delete</a>
-                      </td>
-                    </tr>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                  <TableCell align="left">#</TableCell>
+                    <TableCell align="left">Name</TableCell>
+                    <TableCell align="left">Active</TableCell>
+                    <TableCell align="center">Options</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {languajeDatas?.map((row: any) => (
+                    <TableRow
+                      key={row.id}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                       <TableCell align="left">
+                        {row.id}
+                      </TableCell>
+                      <TableCell align="left">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="left">
+                        {row.active ? "active" : "inactive"}
+                      </TableCell>
+                      <TableCell align='center'>
+                        <Button
+                          className="btn btn-success btn-sm ml-1"
+                          color="success"
+                          startIcon={<EditIcon />}
+                          onClick={() => editByIdUserHandler(row)}>
+                          Edit
+                        </Button>
+                        <Button className="btn btn-danger ml-1" color="error" onClick={() => deleteUserByIdHandler(row.id)} startIcon={<DeleteIcon />}>
+                          Remove
+                        </Button>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-
+                </TableBody>
+              </Table>
+            </TableContainer>
+            
+           
               <hr />
               <div className='d-flex justify-content-between'>
                 <span>
