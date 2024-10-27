@@ -1,5 +1,5 @@
 export interface ICity {
     id: number;
     name: string;
-    isActive: boolean;
+    active: boolean;
 }

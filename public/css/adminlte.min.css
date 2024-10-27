@@ -55835,3 +55835,10 @@ a.text-muted:hover {
 }
 
 /*# sourceMappingURL=adminlte.min.css.map */
+
+
+.swal2-actions{
+    display: flex!important;
+    width: 247px!important;
+    justify-content: space-between!important; 
+}

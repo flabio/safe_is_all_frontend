@@ -12,13 +12,11 @@ export const UserPage = () => {
    
     const { dataContext,setDataContext } = useContext(UserContext);
     const [value, setValue] = useState(0);
-    console.log(dataContext)
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
+        event.preventDefault();
         setValue(newValue);
         setDataContext({})  
-        console.log(event)
-  
        
     };
 

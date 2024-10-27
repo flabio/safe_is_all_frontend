@@ -6,23 +6,22 @@ import { AddCityData, useEditCityBydId } from '../../../services';
 export const CityFrom = ({ editData,setEditData }: any) => {
   const createCityMutatin=AddCityData()
   const mutationEdit=useEditCityBydId()
-  const [city, setCity] = useState<any>(CityModel);
+  const [city, setCity] = useState(CityModel);
   useEffect(() => {
     if (editData.id>0 ) {
       setCity(editData)
     }
   }, [editData])
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
   
     if (city.id >0) {
       mutationEdit.mutate({...city});
     } else {
       createCityMutatin.mutate({ ...city });
-      setEditData({})
     }
-
+    setEditData({})
   }
   return (
     <>

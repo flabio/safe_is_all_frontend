@@ -5,107 +5,118 @@ import { useAddState, useEditStateBydId } from "../../../services";
 import { UserContext } from "../../../hook";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, FormControl, Icon, InputLabel, MenuItem, Select, Switch } from '@mui/material';
+import { Autocomplete, Button, Icon, Switch } from '@mui/material';
 import './index.css';
 
-export const StateForm = ({ cityData }: any) => {
-  const { dataContext } = useContext(UserContext);
+export const StateForm = ({ cityData,setValue}: any) => {
+  const { setDataContext,dataContext } = useContext(UserContext);
 
   const [state, setState] = useState(StateModel);
-  const { data, isLoading } = cityData
-  const createStateMutation = useAddState()
-  const udpateStateMutation = useEditStateBydId()
+  const { data, isLoading } = cityData;
+  const createStateMutation = useAddState();
+  const udpateStateMutation = useEditStateBydId();
+
   useEffect(() => {
     if (dataContext?.id > 0) {
-      setState(dataContext)
+      setState(dataContext);
     } else {
-      setState(StateModel)
+      setState(StateModel);
     }
   }, [dataContext]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (state.id > 0) {
       udpateStateMutation.mutate({ ...state });
     } else {
+     
       createStateMutation.mutate({ ...state });
     }
+    setValue(0)
+    setDataContext({});
+  };
 
-  }
   return (
     <>
-      {
-        (
-          isLoading !== undefined ? (
-            <>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{ width: 500, maxWidth: '100%' }}>
-                <div className='row'>
-                  <div className='col-5'>
+      {isLoading !== undefined ? (
+        <>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ width: 500, maxWidth: '100%' }}
+          >
+            <div className="row">
+              <div className="col-5">
+                <TextField
+                  fullWidth
+                  label="Name"
+                  id="name"
+                  name="name"
+                  value={state.name}
+                  onChange={(e) => setState({ ...state, name: e.target.value })}
+                />
+              </div>
+              <div className="col-4">
+                <Autocomplete
+                  id="city-select-autocomplete"
+                  sx={{ width: 300 }}
+                  options={data || []}
+                  autoHighlight
+                  getOptionLabel={(option) => option.name || ''}
+                  value={data?.find((city) => city.id === state.city_id) || null}
+                  onChange={(event, newValue) => {
+                    setState({ ...state, city_id: newValue ? newValue.id : null });
+                  }}
+                  renderOption={(props, option) => (
+                    <div key={option.id}>
+                      <Box
+                        component="li" {...props}>
+                        {option.name}
+                      </Box>
+                    </div>
+                  )}
+                  renderInput={(params) => (
                     <TextField
-                      fullWidth
-                      label="Name"
-                      id="fullWidth"
-                      name='name'
-                      value={state.name}
-                      onChange={(e) => setState({ ...state, name: e.target.value })}
-                    />
-                  </div>
-                  <div className='col-5'>
-                  <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">City</InputLabel>
-  <Select
-                      fullWidth
-                      id="demo-simple-select-label"
-                      label="City"
-                      name='city_id'
-                      value={state.city_id}
-                  
-                      onChange={(e) => {
-                        const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
-                        setState({...state, city_id: value });
+                      {...params}
+                      label="Choose a City"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: 'new-password', // Desactiva el autocompletado
                       }}
-                    >
-                      {data?.map((city: any) => (
-                        <MenuItem key={city.id} value={city.id}>{city.name}</MenuItem>
-                      ))}
-                    </Select>
-</FormControl>
-                    
-                  </div>
-                  <div className='col-2'>
-                    <TextField
-                      fullWidth
-                      label="Zip Code"
-                      id="fullWidth"
-                      name='zip_ode'
-                      value={state.zip_code}
-                      onChange={(e) => setState({ ...state, zip_code: e.target.value })}
                     />
-                  </div>
-                </div>
-                <br />
-                <div className='course-button'>
-                  <Switch
-                    checked={state.active}
-                    onChange={(e) => setState({ ...state, active: e.target.checked })}
-                    inputProps={{ 'aria-label': 'controlled' }}
-                    name='active'
-                  />
-                  <Button variant="contained" type='submit'>
-                    <Icon>save</Icon> Save
-                  </Button>
-                </div>
-              </Box>
-             
-            </>
-          )
-            : <><Skeleton count={4} />
-            </>)
-
-      }
-
+                  )}
+                />
+              </div>
+              <div className="col-3">
+                <TextField
+                  fullWidth
+                  label="Zip Code"
+                  id="zip_code"
+                  name="zip_code"
+                  value={state.zip_code}
+                  onChange={(e) => setState({ ...state, zip_code: e.target.value })}
+                />
+              </div>
+            </div>
+            <br />
+            <div className="course-button">
+              <Switch
+                checked={state.active}
+                onChange={(e) => setState({ ...state, active: e.target.checked })}
+                inputProps={{ 'aria-label': 'controlled' }}
+                name="active"
+              />
+              <Button variant="contained" type="submit">
+                <Icon>save</Icon> Save
+              </Button>
+            </div>
+          </Box>
+        </>
+      ) : (
+        <>
+          <Skeleton count={4} />
+        </>
+      )}
     </>
-  )
-}
+  );
+};
