@@ -22,9 +22,7 @@ export const UserPage = () => {
 
     return (
         <>
-         <div className='row'>
-                <div className="col-12">
-                    <div className="card card-orange">
+
                         <Box sx={{ width: '100%' }}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -43,9 +41,7 @@ export const UserPage = () => {
                             </CustomTabPanel>
 
                         </Box>
-                    </div>
-                </div>
-            </div>
+          
     
         </>
     )

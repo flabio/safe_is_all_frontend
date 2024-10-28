@@ -17,7 +17,7 @@ export const AllIsSafeRouter = () => {
             <NavScreen />
             <AsideScreen />
             <div className="content-wrapper">
-                <div className="content-header" style={{minHeight:" 1302.12px;"}}>
+                {/* <div className="content-header" style={{minHeight:" 1302.12px;"}}>
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
@@ -39,7 +39,7 @@ export const AllIsSafeRouter = () => {
                         </div>
                     </div>
                 </div>
-                  
+                   */}
                 <div className="container-fluid">
                         <Routes>
                             <Route path='/' element={<Navigate to='/dashboard' replace />}></Route>

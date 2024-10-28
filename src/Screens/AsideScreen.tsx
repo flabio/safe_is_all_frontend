@@ -1,27 +1,108 @@
 
+import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import { NavComponent } from '../components/nav/NavComponent'
+import { Home } from '@mui/icons-material'
+import { useState } from 'react'; import {
+    Drawer,
+    List,
+    ListItem,
+    ListItemText,
+    ListItemIcon,
+    Toolbar,
+    IconButton,
+    Typography,
+    AppBar,
+    Box,
+    Avatar,
+} from '@mui/material';
+import {
+    Dashboard,
+    People,
+    School,
+    Class,
+    LocationCity,
+    Public,
+    Language,
+} from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link, useLocation } from 'react-router-dom';
 
+const drawerWidth = 240;
 export const AsideScreen = () => {
+    let location = useLocation();
 
+    let nameRutorClean = location.pathname.split('/');
+    const [open, setOpen] = useState(false);
+
+    const toggleDrawer = () => {
+        setOpen(!open);
+    };
     return (
         <>
-            <aside className="main-sidebar sidebar-primary elevation-4">
-                <a href="index3.html" className="brand-link">
-                    <img src="/img/ogo.png" alt="AdminLTE Logo" className="brand-image " />
-                    <span className="brand-text font-weight-light" >.</span>
-                </a>
-                <div className="sidebar">
-                    <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div className="image">
-                            <img src="/img/ogo.png" className="img-circle elevation-2" alt="User Image" />
-                        </div>
-                        <div className="info">
-                            <a href="#" className="d-block">Alexander Pierce</a>
-                        </div>
-                    </div>
-                    <NavComponent />
-                </div>
-            </aside>
+            <Box sx={{ display: 'flex' }}>
+
+
+                <Drawer
+                    variant="permanent"
+                    sx={{
+                        width: drawerWidth,
+                        flexShrink: 0,
+                        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                    }}
+                >
+                    <Avatar src="/public/img/ogo.png" sx={{
+                        top: 5,
+                        width: 130,
+                        height: 70,
+                        left: 10,
+
+                    }} variant="square">
+                        A
+                    </Avatar>
+                    <Toolbar />
+                    <Box sx={{ overflow: 'auto',color:'black' }}>
+                        <List>
+                            {[
+                                { text: 'Dashboard', link: '/dashboard', icon: <Dashboard /> },
+                                { text: 'Rol', link: '/rol', icon: <People /> },
+                                { text: 'User', link: '/user', icon: <People /> },
+                                { text: 'Instructor', link: '/instructor', icon: <People /> },
+                                { text: 'Student', link: '/student', icon: <People /> },
+                                { text: 'School', link: '/school', icon: <School /> },
+                                { text: 'Course', link: '/course', icon: <Class /> },
+                                { text: 'City', link: '/city', icon: <LocationCity /> },
+                                { text: 'State', link: '/state', icon: <Public /> },
+                                { text: 'Language', link: '/language', icon: <Language /> },
+                            ].map((item, index) => (
+                                <ListItem 
+                                sx={{ color:'black' }}    
+                                button 
+                                    key={index} 
+                                    component={Link} to={item.link}>
+                                    <ListItemIcon>{item.icon}</ListItemIcon>
+                                    <ListItemText primary={item.text} />
+                                </ListItem>
+                            ))}
+                        </List>
+
+                    </Box>
+                </Drawer>
+
+                <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
+                    <Toolbar />
+
+                    <Typography sx={{ aling: 'left' }}  >
+                        {
+                            (
+                                <Link to={location?.pathname}>
+                                    {nameRutorClean[1]}
+                                </Link>
+                            )
+                        }
+                    </Typography>
+                </Box>
+            </Box>
+
         </>
     )
 

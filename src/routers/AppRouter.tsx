@@ -5,7 +5,7 @@ import { AllIsSafeRouter } from "../AllisSafe";
 
 export const AppRouter = () => {
   const authStatus = localStorage.getItem('token') ? 'authenticated' : 'not-authenticated';
-console.log(authStatus)
+
   return (
     <>
       <Routes>
