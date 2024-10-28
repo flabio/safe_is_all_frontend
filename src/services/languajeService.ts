@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
-import { QueryAddLanguage, QueryeditLanguajeById, QueryTodosLanguages } from "../queries";
+import { QueryAddLanguage, QueryDeleteLanguajeById, QueryeditLanguajeById, QueryTodosLanguages } from "../queries";
 import { ILanguage } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
 
@@ -46,6 +46,33 @@ export const useQueryEditLanguage = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (data: ILanguage) => QueryeditLanguajeById(data),
+        onError: (err: any) => {
+            ToastAlert.fire({
+                icon: "error",
+                title: err.message
+            });
+        },
+        onSuccess:async (data: any) => {
+            ToastAlert.fire({
+                icon: data?.status === 400 ? "info" : "success",
+                title: data?.data?.message
+            });
+            await queryClient.invalidateQueries({
+                queryKey:[ keys.queryKeyLanguages,keys.queryKeyEditLanguage]
+            })
+        },
+        onSettled: async () => {
+            await queryClient.invalidateQueries({
+                queryKey:[ keys.queryKeyLanguages,keys.queryKeyEditLanguage]
+            })
+        },
+    });
+}
+
+export const useQueryDeleteLanguage = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (id: number) => QueryDeleteLanguajeById(id),
         onError: (err: any) => {
             ToastAlert.fire({
                 icon: "error",

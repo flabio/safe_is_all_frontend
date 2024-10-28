@@ -7,13 +7,14 @@ import { UserContext } from '../../../hook';
 import { Table, Button, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useQueryDeleteLanguage } from '../../../services';
 export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages,setValue}:any) => {
   //const [currentPage, setCurrentPage] = useState(1);
  // const {data:languajeDatas,isLoading}:any=useQueryLanguages(currentPage);
  //const [currentPage, setCurrentPage] = useState(1);
  const { setDataContext } = useContext(UserContext);
  const {data:languajeDatas,isLoading}=useQueryTodosLanguages;
-
+ const useQueryDeleteMutation = useQueryDeleteLanguage()
 
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
@@ -30,7 +31,7 @@ export const LanguageList = ({currentPage,setCurrentPage,useQueryTodosLanguages,
     setValue(1)
   }
   const deleteUserByIdHandler=(id:number)=>{
-    console.log(id)
+    useQueryDeleteMutation.mutate(id)
   }
   return (
     <>

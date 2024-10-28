@@ -1,27 +1,20 @@
 
 import { SyntheticEvent, useContext, useState } from 'react';
 import { LanguageList } from '../../components';
-
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { a11yProps, CustomTabPanel } from '../../helpers';
-
 import { UserContext } from '../../../hook';
-
-import { useQueryLanguages } from '../../../services';
 import { LanguageForm } from '../../components/Language/LanguageForm';
+import { useQueryLanguages } from '../../../services';
 
 export const LanguagePage = () => {
   const { dataContext,setDataContext } = useContext(UserContext);
   const [currentPage, setCurrentPage] = useState(1);
-
   const useQueryTodosLanguages = useQueryLanguages(currentPage);
-
-
+  
   const [value, setValue] = useState(0);
-
-
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     event.preventDefault();

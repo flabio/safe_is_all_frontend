@@ -12,5 +12,5 @@ export  const QueryAddLanguage = async (data: ILanguage) =>  await allIsSafeApi.
 export  const QueryeditLanguajeById = async (data: ILanguage) => await allIsSafeApi.put(`/language/${data.id}`, { ...data })
   
 
-export  const QueryDeteleLanguajeById = async (id: number) =>  await allIsSafeApi.delete(`/language/${id}`)
+export  const QueryDeleteLanguajeById = async (id: number) =>  await allIsSafeApi.delete(`/language/${id}`)
   
