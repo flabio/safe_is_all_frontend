@@ -41,6 +41,7 @@ export const ContactComponent = () => {
                         {
                             loading ? (
                                 <>
+                                
                                     <Skeleton height={30} width={280} duration={1.5} baseColor="#ddd" highlightColor="#eee" />
                                     <Skeleton height={30} width={340} duration={1.5} baseColor="#ddd" highlightColor="#eee" />
                                     <Skeleton height={30} width={50} duration={1.5} baseColor="#ddd" highlightColor="#eee" />

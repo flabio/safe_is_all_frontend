@@ -1,7 +1,9 @@
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import {  Navigate, Route, Routes } from 'react-router-dom';
 import { CityPage, CoursePage, InstructorPage, LanguagePage, RolPage, SchoolPage, StatePage,  StudentPage,  UserPage } from '../pages';
 import { AsideScreen, FooterScreen, NavScreen } from '../../Screens';
 import { useLocation } from 'react-router-dom';
+import { DashboardPage } from '../../pages';
+
 
 
 
@@ -16,7 +18,10 @@ export const AllIsSafeRouter = () => {
 
             <NavScreen />
             <AsideScreen />
+
             <div className="content-wrapper">
+          
+
                 {/* <div className="content-header" style={{minHeight:" 1302.12px;"}}>
                     <div className="container-fluid">
                         <div className="row mb-2">
@@ -43,6 +48,7 @@ export const AllIsSafeRouter = () => {
                 <div className="container-fluid">
                         <Routes>
                             <Route path='/' element={<Navigate to='/dashboard' replace />}></Route>
+                            <Route path='dashboard' element={<DashboardPage />}></Route>
                             <Route path='rol' element={<RolPage />}></Route>
                             <Route path='/school' element={<SchoolPage />}></Route>
                             <Route path='/city' element={<CityPage />}></Route>

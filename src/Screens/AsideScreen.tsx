@@ -14,6 +14,7 @@ import { useState } from 'react'; import {
     AppBar,
     Box,
     Avatar,
+    Breadcrumbs,
 } from '@mui/material';
 import {
     Dashboard,
@@ -24,7 +25,7 @@ import {
     Public,
     Language,
 } from '@mui/icons-material';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import { Link, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -40,8 +41,6 @@ export const AsideScreen = () => {
     return (
         <>
             <Box sx={{ display: 'flex' }}>
-
-
                 <Drawer
                     variant="permanent"
                     sx={{
@@ -59,8 +58,8 @@ export const AsideScreen = () => {
                     }} variant="square">
                         A
                     </Avatar>
-                    <Toolbar />
-                    <Box sx={{ overflow: 'auto',color:'black' }}>
+
+                    <Box sx={{ overflow: 'auto', color: 'black' }}>
                         <List>
                             {[
                                 { text: 'Dashboard', link: '/dashboard', icon: <Dashboard /> },
@@ -74,32 +73,28 @@ export const AsideScreen = () => {
                                 { text: 'State', link: '/state', icon: <Public /> },
                                 { text: 'Language', link: '/language', icon: <Language /> },
                             ].map((item, index) => (
-                                <ListItem 
-                                sx={{ color:'black' }}    
-                                button 
-                                    key={index} 
+                                <ListItem
+                                    sx={{ color: 'black' }}
+                                    button
+                                    key={index}
                                     component={Link} to={item.link}>
                                     <ListItemIcon>{item.icon}</ListItemIcon>
                                     <ListItemText primary={item.text} />
                                 </ListItem>
                             ))}
                         </List>
-
                     </Box>
                 </Drawer>
-
                 <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-                    <Toolbar />
-
-                    <Typography sx={{ aling: 'left' }}  >
-                        {
-                            (
-                                <Link to={location?.pathname}>
-                                    {nameRutorClean[1]}
-                                </Link>
-                            )
-                        }
-                    </Typography>
+                    <br />
+                    <br />
+                    <br />
+                    <Breadcrumbs maxItems={2} aria-label="breadcrumb">
+                        <Link underline="hover" color="inherit" to={location?.pathname}>
+                            {nameRutorClean[1]}
+                        </Link>
+                        <Typography sx={{ color: 'text.primary' }}>{nameRutorClean[1]}</Typography>
+                    </Breadcrumbs>
                 </Box>
             </Box>
 

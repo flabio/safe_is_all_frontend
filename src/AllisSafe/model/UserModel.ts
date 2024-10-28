@@ -13,6 +13,6 @@ export const UserModel={
     password:"",
     rol_name:"",
     state_name:"",
-    //password_confirmation:"",
+    password_confirmation:"",
     active:true
 }

@@ -260,7 +260,7 @@ export const UserForm = () => {
               />
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password">Password Confirmation</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
@@ -277,9 +277,9 @@ export const UserForm = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
+                label="Password confirmation"
                 name='password_confirmation'
-                value={user.password}
+                value={user.password_confirmation}
                 onChange={handleChange}
               />
             </FormControl>
@@ -295,7 +295,7 @@ export const UserForm = () => {
           </div>
 
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:10,marginBottom:20 }}>
             <Button variant="contained" type='submit'>
               <Icon>save</Icon> Save
             </Button>

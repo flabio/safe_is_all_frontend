@@ -25,6 +25,14 @@ import { MenuItem } from '@mui/material';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 export const NavScreen = () => {
+  
+  const [header, payload] = localStorage.getItem("token").split('.');
+
+// Decodificar el header y el payload (Base64)
+const decodedHeader = JSON.parse(atob(header));
+const decodedPayload = JSON.parse(atob(payload));
+
+console.log(decodedPayload.avatar)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -59,7 +67,7 @@ export const NavScreen = () => {
  <AppBar sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl" color='red'>
         <Toolbar disableGutters color='red'>
-       <Avatar src="/public/img/ogo.png" sx={{
+       <Avatar src={payload?.avatar} sx={{
         width: 120,
         height: 40,
         marginLeft: 'auto',
@@ -76,7 +84,7 @@ export const NavScreen = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Flabio Hinestroza Sanclemente" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={decodedPayload.full_name} src={decodedPayload.avatar} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -97,10 +105,10 @@ export const NavScreen = () => {
             >
           
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profilesss
+          <Avatar src={decodedPayload.avatar} /> {decodedPayload.full_name}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <Avatar />  {decodedPayload.full_name}
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
