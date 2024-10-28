@@ -8,8 +8,9 @@ import allIsSafeApi from '../api/AllIsSafeApi';
 export const postLogin = async (newUser: ILogin) =>{
    return await allIsSafeApi.post<any>('/auth',{"username":newUser.username,'password':newUser.password}).then(response =>{
     localStorage.setItem('token',response.data);
-    console.log(response.data);
-    location.reload();
+   
+    location.href="/dashboard"
+  //location.reload();
       return response.data
     })   
 }

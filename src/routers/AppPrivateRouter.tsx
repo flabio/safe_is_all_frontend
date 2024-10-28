@@ -8,6 +8,7 @@ export const AppPrivateRouter = ({ children }:any) => {
   if (authStatus === 'not-authenticated') {
     return <Navigate to="/auth/login" />;
   }
+ 
 
   // Si está autenticado, renderizar las rutas protegidas
   return children;

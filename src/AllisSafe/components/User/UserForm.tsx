@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch } from '@mui/material';
+import { Box, Button, DialogContentText, FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, Switch, TableContainer } from '@mui/material';
 import Icon from '@mui/material/Icon';
 import { UserModel } from '../../model/';
 import { AddUser, EditUser, queriesTodosRol, useStates } from '../../../services';
@@ -28,6 +28,7 @@ export const UserForm = () => {
       setUser(UserModel)
     }
   }, [dataContext])
+  console.log(user)
   const handleFileChange = (e: any) => {
     setFile(e.target.files[0]);
   }
@@ -69,17 +70,19 @@ export const UserForm = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+             <DialogContentText id="alert-dialog-description">
+             <TableContainer component={Paper}>
+      <div >
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ '& .MuiTextField-root': { m: 1, p: 1, width: '45ch' } }}
+          sx={{ '& .MuiTextField-root': { p: 1, width: '45ch' ,margin:'150px'} }}
           noValidate
           autoComplete="off"
           encType="multipart/form-data">
 
           <div>
-            <FormControl sx={{ m: 2, minWidth: '100%' }} variant="outlined">
+            <FormControl sx={{ m: 2, minWidth: '86%' }} variant="outlined">
               <OutlinedInput
                 id="outlined-adornment-first-name"
                 type='file'
@@ -257,7 +260,7 @@ export const UserForm = () => {
               />
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password">Password Confirmation</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
@@ -274,9 +277,9 @@ export const UserForm = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
+                label="Password confirmation"
                 name='password_confirmation'
-                value={user.password}
+                value={user.password_confirmation}
                 onChange={handleChange}
               />
             </FormControl>
@@ -292,7 +295,7 @@ export const UserForm = () => {
           </div>
 
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:10,marginBottom:20 }}>
             <Button variant="contained" type='submit'>
               <Icon>save</Icon> Save
             </Button>
@@ -301,6 +304,8 @@ export const UserForm = () => {
         </Box>
       </div>
 
+</TableContainer>
+</DialogContentText>
     </>
   )
 }

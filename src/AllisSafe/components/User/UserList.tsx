@@ -31,6 +31,7 @@ export const UserList = ({ setValue }) => {
   const detaildUserHandler = (row: IUserRequest) => {
     setOpen(true);
     setUser(row);
+    setValue(2)
   };
 
   const handleClose = () => {

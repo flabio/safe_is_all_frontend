@@ -1,64 +1,54 @@
 
-import {  useState } from 'react';
-import {  LanguageList } from '../../components';
-import { CityModel } from '../../model';
+import { SyntheticEvent, useContext, useState } from 'react';
+import { LanguageList } from '../../components';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
+import { UserContext } from '../../../hook';
+import { LanguageForm } from '../../components/Language/LanguageForm';
 import { useQueryLanguages } from '../../../services';
 
 export const LanguagePage = () => {
- 
+  const { dataContext,setDataContext } = useContext(UserContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const [flagSelected, setFlagSelected] = useState<boolean>(true)
-  const [editData, setEditData] = useState<any>(CityModel)
-  const useQueryTodosLanguages:any=useQueryLanguages(currentPage);
+  const useQueryTodosLanguages = useQueryLanguages(currentPage);
   
-  const flagSelectedHandler=(flag:boolean) => {
-    setFlagSelected(flag)
-    setEditData({})
-    console.log(editData)
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    event.preventDefault();
+    setValue(newValue);
+
+  };
+  const handlerValue = () => {
+    setValue(0)
+    setDataContext({})
   }
-//console.log(edit)
+  //console.log(edit)
   return (
     <>
-
       <div className='row'>
         <div className="col-12">
           <div className="card card-orange">
-            <div className="card-header p-2">
-              <ul className="nav nav-pills">
-                <li className="nav-item">
-                  <a className="nav-link" onClick={()=>flagSelectedHandler(true)}>
-                    <i className='fa fa-list'></i> Cities 
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link"  onClick={()=>flagSelectedHandler(false)}>
-                  <i className='fa fa-plus'></i>  Create city
-                  </a>
-                </li>
-                
-              </ul>
-            </div>
-            <div className="card-body">
-              {
-                flagSelected ? (
-                  <>
-                    <div className="tab-content">
-                      <div className="card-body" >
-                        <LanguageList currentPage={currentPage} setCurrentPage={setCurrentPage} useQueryTodosLanguages={useQueryTodosLanguages} />
-                      </div>
-                    </div>
-                  </>
-                ) :
-                  <>
-                    <div className="tab-content">
-                     <h1>Form</h1>
-                    </div>
-                  </>
-              }
-            </div>
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                  <Tab label="Lists" {...a11yProps(0)}  onClick={()=>handlerValue()} />
+                  <Tab label={`${dataContext?.id > 0 ? "Edit" : "Create"}`}  {...a11yProps(1)} />
+                </Tabs>
+              </Box>
+              <CustomTabPanel value={value} index={0}>
+                <LanguageList currentPage={currentPage} setCurrentPage={setCurrentPage} useQueryTodosLanguages={useQueryTodosLanguages} setValue={setValue} />
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={1}>
+                <LanguageForm setValue={setValue} />
+              </CustomTabPanel>
+            </Box>
           </div>
         </div>
       </div>
+
     </>
   )
 }

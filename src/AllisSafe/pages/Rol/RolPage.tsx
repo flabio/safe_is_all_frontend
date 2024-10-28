@@ -1,65 +1,51 @@
 
-import { useState } from 'react';
+import { SyntheticEvent, useContext, useState } from 'react';
 import { RolListComponent, RolForm } from '../../components';
-
-const initForm = {
-  id: 0,
-  name: "",
-  active: true
-}
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
+import { UserContext } from '../../../hook';
 
 
 export const RolPage = () => {
-  const [testDate, setTestData] = useState(false);
-  const [flagSelected, setFlagSelected] = useState<boolean>(true)
-  const [rolGData, setRolGData] = useState<any>(initForm)
-  const flagSelectedHandler=(flag:boolean) => {
-    setFlagSelected(flag)
-    setRolGData({})
-  }
+  const { dataContext,setDataContext } = useContext(UserContext);
 
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    event.preventDefault();
+    setValue(newValue);
+
+  };
+  const handlerValue = () => {
+    setValue(0)
+    setDataContext({})
+  }
   return (
     <>
-
       <div className='row'>
         <div className="col-12">
           <div className="card card-orange">
-            <div className="card-header p-2">
-              <ul className="nav nav-pills">
-                <li className="nav-item">
-                  <a className="nav-link" onClick={()=>flagSelectedHandler(true)}>
-                    <i className='fa fa-list'></i> Roles 
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link"  onClick={()=>flagSelectedHandler(false)}>
-                  <i className='fa fa-plus'></i>  Create Rol
-                  </a>
-                </li>
-                
-              </ul>
-            </div>
-            <div className="card-body">
-              {
-                flagSelected ? (
-                  <>
-                    <div className="tab-content">
-                      <div className="card-body" >
-                        <RolListComponent testDate={testDate} setTestData={setTestData} setRolGData={setRolGData} setFlagSelected={setFlagSelected} />
-                      </div>
-                    </div>
-                  </>
-                ) :
-                  <>
-                    <div className="tab-content">
-                      <RolForm setTestData={setTestData} rolGData={rolGData} setRolGData={setRolGData} />
-                    </div>
-                  </>
-              }
-            </div>
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                  <Tab label="Lists" {...a11yProps(0)}  onClick={()=>handlerValue()} />
+                  <Tab  label= {`${dataContext?.id > 0?"Edit":"Create"}`}  {...a11yProps(1)} />
+                </Tabs>
+              </Box>
+              <CustomTabPanel value={value} index={0}>
+                <RolListComponent  setValue={setValue} />
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={1}>
+              <RolForm setValue={setValue} />
+                  
+              </CustomTabPanel>
+            </Box>
           </div>
         </div>
       </div>
+
     </>
   )
 }

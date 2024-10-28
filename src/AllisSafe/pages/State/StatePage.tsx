@@ -9,7 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { a11yProps, CustomTabPanel } from '../../helpers';
-import { StateModel } from '../../model';
+
 import { UserContext } from '../../../hook';
 
 
@@ -37,7 +37,6 @@ export const StatePage = () => {
                                 <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
                                     <Tab label="Lists" {...a11yProps(0)} />
                                     <Tab  label= {`${dataContext?.id > 0?"Edit":"Create"}`}  {...a11yProps(1)} />
-
                                 </Tabs>
                             </Box>
                             <CustomTabPanel value={value} index={0}>
@@ -46,12 +45,10 @@ export const StatePage = () => {
                             <CustomTabPanel value={value} index={1}>
                                 <StateForm cityData={cityData} setValue={setValue} />
                             </CustomTabPanel>
-
                         </Box>
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

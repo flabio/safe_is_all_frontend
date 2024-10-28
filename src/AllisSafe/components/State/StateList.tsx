@@ -64,7 +64,6 @@ export const StateList = ({ data, isLoading ,setValue}: any) => {
                           color="success"
                           startIcon={<EditIcon />}
                           onClick={() => editByIdCityHandler(row)}>
-
                           Edit
                         </Button>
                         <Button className="btn btn-danger ml-1" color="error" onClick={() => deleteRolByIdHandler(row.id)} startIcon={<DeleteIcon />}>

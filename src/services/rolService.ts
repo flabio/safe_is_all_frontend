@@ -13,7 +13,7 @@ import { ToastAlert } from '../AllisSafe/helpers';
  
 
 export const createNew = async (dataRol: IRol) =>{
-  return await allIsSafeApi.post<any>('/rol',{...dataRol}).then(response =>{
+  return await allIsSafeApi.post('/rol',{...dataRol}).then(response =>{
     ToastAlert.fire({
       icon: response?.status === 400 ? "info" : "success",
       title: response?.data?.message

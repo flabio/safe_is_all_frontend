@@ -3,7 +3,7 @@ import {  ApiStatesResponse, IStates } from "../interfaces"
 
 
 export const QueryTodosStates = async () => {
-    const response: ApiStatesResponse = await (await allIsSafeApi.get<any>('/states')).data
+    const response: ApiStatesResponse = await (await allIsSafeApi.get('/states')).data
     return (response).data
   }
 export  const QueryAddState = async (state: IStates) =>  await allIsSafeApi.post(`/states`, { ...state })

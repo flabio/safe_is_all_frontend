@@ -5,6 +5,7 @@ export * from './Rol/RolListComponent';
 export * from './Rol/RolForm';
 //user
 export * from './User/UserList';
+export * from './User/UserDetail';
 
 //Student
 export * from './Student/StudentList';
