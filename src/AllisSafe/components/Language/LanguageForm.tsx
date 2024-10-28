@@ -4,8 +4,6 @@ import { UserContext } from '../../../hook';
 import { LanguajeModel } from '../../model/LanguageModel';
 import { useQueryAddLanguage, useQueryEditLanguage } from '../../../services';
 
-
-
 export const LanguageForm = ({ setValue }: any) => {
     const { setDataContext, dataContext } = useContext(UserContext);
     const [lan, setLan] = useState(LanguajeModel);
@@ -17,7 +15,7 @@ export const LanguageForm = ({ setValue }: any) => {
         } else {
             setLan(LanguajeModel);
         }
-      }, [dataContext]);
+    }, [dataContext]);
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         if (dataContext?.id > 0) {

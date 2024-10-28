@@ -1,5 +1,6 @@
-import  { useEffect, useState } from 'react'
-import { createNew, editRol, queryRoles } from '../../../services/rolService';
+import  { SyntheticEvent, useContext, useEffect, useState } from 'react'
+import { AddRol, EditRol } from '../../../services';
+import { UserContext } from '../../../hook';
 
 const initForm = {
   id: 0,
@@ -7,29 +8,33 @@ const initForm = {
   active: true
 }
 
-export const RolForm = ({ setTestData, rolGData,setRolGData }: any) => {
-  const [roles, setRoles] = useState<any>(initForm);
-  useEffect(() => {
-    if (rolGData.id>0 ) {
-      setRoles(rolGData)
-    }
-  }, [rolGData])
+export const RolForm = ({ setValue}:any) => {
+  const { setDataContext,dataContext } = useContext(UserContext);
+  const [roles, setRoles] = useState(initForm);
+  const addMutuation = AddRol();
+  const editMutuation = EditRol();
 
-  const handleSubmit = async (e: any) => {
+  useEffect(() => {
+    if (dataContext?.id > 0) {
+      setRoles(dataContext);
+    } else {
+      setRoles(roles);
+    }
+  }, [dataContext]);
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (roles.id >0) {
-      editRol(roles)
-      setRolGData(roles)
+      editMutuation.mutate({...roles})
+    
     } else {
-      createNew(roles)
+      addMutuation.mutate({...roles})
       setRoles(initForm)
-     // setRolGData(initForm)
-
+      
     }
+    //setValue(0)
+    setDataContext({})
 
-    setTestData(true)
 
-    await queryRoles()
   }
   return (
     <>
@@ -51,7 +56,7 @@ export const RolForm = ({ setTestData, rolGData,setRolGData }: any) => {
 
         <div className="card-footer">
           {
-            rolGData === undefined ? (
+            dataContext?.id>0 ? (
               <>
                 <button type="submit" className="btn btn-primary">Edit</button>
               </>
