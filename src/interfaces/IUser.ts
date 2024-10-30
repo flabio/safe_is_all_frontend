@@ -21,8 +21,7 @@ export interface IUserRequest {
 
     avatar:string;
     first_name:string;
-    first_sur_name:string;
-    secon_sur_name:string;
+    last_name:string;
     email:string;
     address:string;
     phone:string;

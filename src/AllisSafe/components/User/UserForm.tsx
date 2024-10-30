@@ -105,47 +105,32 @@ export const UserForm = () => {
               />
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-first-name">Second Name</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-last-name">Last Name</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-second-name"
+                id="outlined-adornment-last-name"
                 type={'text'}
-                label="Second Name"
-                name='second_name'
-                placeholder='Enter Second Name'
-              />
-            </FormControl>
-
-
-          </div>
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-first-sur-name">First Sur Name</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-first-sur-name"
-                type={'text'}
-                label="1. Last Name"
-
-                name='first_sur_name'
-                value={user.first_sur_name}
+                label="Last Name"
+                name='last_name'
+                placeholder='Enter Last Name'
+                value={user.last_name}
                 onChange={handleChange}
               />
             </FormControl>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-second-sur-name">Second Sur Name</InputLabel>
+          </div>
+          <div>
+          <FormControl sx={{ m: 2, minWidth: 290 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-second-sur-name"
-                type={'text'}
-                label="2. Last Name"
-                name='secon_sur_name'
-                value={user.secon_sur_name}
+                id="outlined-adornment-email"
+                type={'email'}
+                name='email'
+                placeholder='Enter Email'
+                value={user.email}
                 onChange={handleChange}
               />
             </FormControl>
 
-
-          </div>
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+            <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-address">Address</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-address"
@@ -156,7 +141,7 @@ export const UserForm = () => {
               />
             </FormControl>
 
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+            <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-phone">Phone</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-phone"
@@ -167,30 +152,8 @@ export const UserForm = () => {
               />
             </FormControl>
 
-          </div>
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-email"
-                type={'text'}
-                name='email'
-                placeholder='Enter Email'
-                value={user.email}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-zip-code">Zip Code</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-zip-code"
-                type={'text'}
-                name='zip_code'
-                placeholder='Enter Zip Code'
-                value={user.zip_code}
-                onChange={handleChange}
-              />
-            </FormControl>
+       
+         
 
           </div>
 

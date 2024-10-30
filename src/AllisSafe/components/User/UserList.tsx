@@ -159,7 +159,7 @@ export const UserList = ({ setValue }) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data?.data?.map((row) => (
+                    { data && data?.data.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -172,7 +172,7 @@ export const UserList = ({ setValue }) => {
                           <Avatar alt={row?.first_name} src={row?.avatar} variant="rounded" />
                         </TableCell>
                         <TableCell align="left">{row?.first_name}</TableCell>
-                        <TableCell align="left">{row?.first_sur_name} {row.secon_sur_name}</TableCell>
+                        <TableCell align="left">{row?.last_name} </TableCell>
                         <TableCell align="left">{row.phone}</TableCell>
                     
                        
