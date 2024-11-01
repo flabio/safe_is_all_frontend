@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 //const BASE_URL = "http://localhost:3080";
-const BASE_URL = "http://34.207.102.227:3080"
+
 
 
 

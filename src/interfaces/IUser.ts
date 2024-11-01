@@ -31,3 +31,10 @@ export interface IUserRequest {
     password:string;
     active:boolean;
 }
+
+
+export interface  IUserModelPassword{
+    id:number;
+    password:string;
+    password_confirmation:string;
+}

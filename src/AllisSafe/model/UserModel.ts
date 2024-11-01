@@ -15,3 +15,10 @@ export const UserModel={
     password_confirmation:"",
     active:true
 }
+
+export const UserModelPassword={
+    id:0,
+    password:"",
+    password_confirmation:""
+}
+

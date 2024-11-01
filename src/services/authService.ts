@@ -2,17 +2,22 @@
 import { ILogin } from '../interfaces/ILogin';
 
 import allIsSafeApi from '../api/AllIsSafeApi';
+import Swal from 'sweetalert2';
 //const  getLoginKey:string[] =['post-login']
 //const queryClient = useQueryClient();
 
 export const postLogin = async (newUser: ILogin) =>{
-   return await allIsSafeApi.post<any>('/auth',{"username":newUser.username,'password':newUser.password}).then(response =>{
-    localStorage.setItem('token',response.data);
-   
-    location.href="/dashboard"
-  //location.reload();
-      return response.data
-    })   
+   return await allIsSafeApi.post('/auth',{"username":newUser.username,'password':newUser.password}).then(response =>{
+      localStorage.setItem('token',response.data);
+      location.href="/dashboard"
+      return response.data 
+   }).catch(err=>{
+      Swal.fire({
+        title: "Error",
+        text: "Usuario o contraseña incorrectos",
+        icon: "error",
+      });
+    })  
 }
 
 // // Mutation function

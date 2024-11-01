@@ -49,7 +49,7 @@ export const AsideScreen = () => {
                         [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
                     }}
                 >
-                    <Avatar src="/public/img/ogo.png" sx={{
+                    <Avatar src="/img/ogo.png" sx={{
                         top: 5,
                         width: 130,
                         height: 70,

@@ -28,12 +28,11 @@ export const UserForm = () => {
       setUser(UserModel)
     }
   }, [dataContext])
-  console.log(user)
+
   const handleFileChange = (e: any) => {
     setFile(e.target.files[0]);
   }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
     const { name, value } = event.target;
     setChecked(event.target.checked)
     user.active = event.target.type === "checkbox" ? event.target.checked : false
@@ -63,212 +62,203 @@ export const UserForm = () => {
       udpateUserMutation.mutate({ id: user.id, data });
     } else {
       useMutationAddUser.mutate(data);
-
     }
-
   };
 
   return (
     <>
-             <DialogContentText id="alert-dialog-description">
-             <TableContainer component={Paper}>
-      <div >
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          sx={{ '& .MuiTextField-root': { p: 1, width: '45ch' ,margin:'150px'} }}
-          noValidate
-          autoComplete="off"
-          encType="multipart/form-data">
-
-          <div>
-            <FormControl sx={{ m: 2, minWidth: '86%' }} variant="outlined">
-              <OutlinedInput
-                id="outlined-adornment-first-name"
-                type='file'
-                name='file'
-                onChange={handleFileChange}
-              />
-            </FormControl>
-
-          </div>
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-first-name">First Name</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-first-name"
-                type={'text'}
-                label="First Name"
-                name='first_name'
-                value={user.first_name}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-last-name">Last Name</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-last-name"
-                type={'text'}
-                label="Last Name"
-                name='last_name'
-                placeholder='Enter Last Name'
-                value={user.last_name}
-                onChange={handleChange}
-              />
-            </FormControl>
-          </div>
-          <div>
-          <FormControl sx={{ m: 2, minWidth: 290 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-email"
-                type={'email'}
-                name='email'
-                placeholder='Enter Email'
-                value={user.email}
-                onChange={handleChange}
-              />
-            </FormControl>
-
-            <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-address">Address</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-address"
-                type={'text'}
-                name='address'
-                value={user.address}
-                onChange={handleChange}
-              />
-            </FormControl>
-
-            <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-phone">Phone</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-phone"
-                type={'text'}
-                name='phone'
-                value={user.phone}
-                onChange={handleChange}
-              />
-            </FormControl>
-
-       
-         
-
-          </div>
-
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-rol">Rol</InputLabel>
-              <Select
-                label="Rol"
-                id="outlined-adornment-rol"
-                name='rol_id'
-                value={user.rol_id}
-                onChange={(e) => {
-                  const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
-                  setUser({ ...user, rol_id: value });
-                }}
-
-              >
-                {rols?.data?.map((rol: any) => (
-                  <MenuItem key={rol?.id} value={rol?.id}>{rol?.name}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-
-
-            <FormControl sx={{ m: 2, minWidth: 390 }}>
-              <InputLabel htmlFor="outlined-adornment-state">State</InputLabel>
-              <Select
-                label="State"
-                id="outlined-adornment-state"
-                name='state_id'
-                value={user.state_id}
-                onChange={(e) => {
-                  const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
-                  setUser({ ...user, state_id: value });
-                }}
-              >
-                {states?.map((state: any) => (
-                  <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-
-          </div>
-          <div>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      onMouseUp={handleMouseUpPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
+      <DialogContentText id="alert-dialog-description">
+        <TableContainer component={Paper}>
+          <div >
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{ '& .MuiTextField-root': { p: 1, width: '45ch', margin: '150px' } }}
+              noValidate
+              autoComplete="off"
+              encType="multipart/form-data">
+              <div>
+                {
+                  user.id===0?(<>
+                  <FormControl sx={{ m: 2, minWidth: '86%' }} variant="outlined" >
+                  <OutlinedInput
+                    id="outlined-adornment-first-name"
+                    type='file'
+                    name='file'
+                    onChange={handleFileChange}
+                  />
+                </FormControl>
+                  </>):(<></>)
                 }
-                label="Password"
-                name='password'
-                value={user.password}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password Confirmation</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      onMouseUp={handleMouseUpPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password confirmation"
-                name='password_confirmation'
-                value={user.password_confirmation}
-                onChange={handleChange}
-              />
-            </FormControl>
-
+                
+              </div>
+              <div>
+                <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-first-name">First Name</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-first-name"
+                    type={'text'}
+                    label="First Name"
+                    name='first_name'
+                    value={user.first_name}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-last-name">Last Name</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-last-name"
+                    type={'text'}
+                    label="Last Name"
+                    name='last_name'
+                    placeholder='Enter Last Name'
+                    value={user.last_name}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </div>
+              <div>
+                <FormControl sx={{ m: 2, minWidth: 290 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-email"
+                    type={'email'}
+                    name='email'
+                    placeholder='Enter Email'
+                    value={user.email}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-address">Address</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-address"
+                    type={'text'}
+                    name='address'
+                    value={user.address}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl sx={{ m: 2, minWidth: 100 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-phone">Phone</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-phone"
+                    type={'text'}
+                    name='phone'
+                    value={user.phone}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </div>
+              <div>
+                <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-rol">Rol</InputLabel>
+                  <Select
+                    label="Rol"
+                    id="outlined-adornment-rol"
+                    name='rol_id'
+                    value={user.rol_id}
+                    onChange={(e) => {
+                      const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
+                      setUser({ ...user, rol_id: value });
+                    }}
+                  >
+                    {rols?.data?.map((rol: any) => (
+                      <MenuItem key={rol?.id} value={rol?.id}>{rol?.name}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ m: 2, minWidth: 390 }}>
+                  <InputLabel htmlFor="outlined-adornment-state">State</InputLabel>
+                  <Select
+                    label="State"
+                    id="outlined-adornment-state"
+                    name='state_id'
+                    value={user.state_id}
+                    onChange={(e) => {
+                      const value = typeof e.target.value === 'string' ? parseInt(e.target.value, 10) : e.target.value;
+                      setUser({ ...user, state_id: value });
+                    }}
+                  >
+                    {states?.map((state: any) => (
+                      <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+              {
+                  user.id===0?(<>
+                  
+                <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          onMouseUp={handleMouseUpPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                    name='password'
+                    value={user.password}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl sx={{ m: 2, minWidth: 390 }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">Password Confirmation</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          onMouseUp={handleMouseUpPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password confirmation"
+                    name='password_confirmation'
+                    value={user.password_confirmation}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                  </>):(<> </>)
+              
+              }
+              </div>
+              <div>
+                <Switch
+                  checked={checked}
+                  onChange={handleChange}
+                  inputProps={{ 'aria-label': 'controlled' }}
+                  name='active'
+                />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 20 }}>
+                <Button variant="contained" type='submit'>
+                  <Icon>save</Icon> Save
+                </Button>
+              </div>
+            </Box>
           </div>
-          <div>
-            <Switch
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-              name='active'
-            />
-          </div>
-
-
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:10,marginBottom:20 }}>
-            <Button variant="contained" type='submit'>
-              <Icon>save</Icon> Save
-            </Button>
-
-          </div>
-        </Box>
-      </div>
-
-</TableContainer>
-</DialogContentText>
+        </TableContainer>
+      </DialogContentText>
     </>
   )
 }
