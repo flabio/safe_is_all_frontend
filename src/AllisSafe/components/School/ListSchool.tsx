@@ -1,5 +1,3 @@
-
-
 import Skeleton from 'react-loading-skeleton';
 import { ISchool } from '../../../interfaces';
 import { DeleteSchoolById, queriesTodosCoursesSchool, QueriesTodosSchools } from '../../../services';
@@ -10,7 +8,6 @@ import { Avatar, Box, Button, Card, Collapse, DialogContent, DialogTitle, IconBu
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
-
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,16 +17,13 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import RepeatOneOnIcon from '@mui/icons-material/RepeatOneOn';
 import FiberPinIcon from '@mui/icons-material/FiberPin';
-
 import ListAltIcon from '@mui/icons-material/ListAlt';
-
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
-
 import { SchoolWithCourses } from './SchoolWithCourses';
 import { SchoolModel } from '../../model';
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -38,8 +32,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-export const ListSchool = ({ setValue, setSchoolData }:any) => {
-
+export const ListSchool = ({ setValue, setSchoolData }: any) => {
   const [open, setOpen] = useState(false);
   const [openTopic, setOpenTopic] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
@@ -50,22 +43,13 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
   const [openSchool, setOpenSchool] = useState(false);
   const { data, isLoading } = QueriesTodosSchools(currentPage)
   const coursesSchool = queriesTodosCoursesSchool()
-
   const queryDeteleSchool = DeleteSchoolById(currentPage)
-
   const editByIdSchoolHandler = async (school: ISchool) => {
-    // setFlagSelected(false)
     setSchoolData(school)
-    //para borar
     setFullWidth(true)
     setMaxWidth('md')
     setValue(1)
-
   }
-  // const infoSchoolModalHandler = (school: ISchool) => {
-  //   console.log(school)
-  // }
-
   const deleteSchoolByIdHandler = async (id: number) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -90,10 +74,7 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
           icon: "success"
         });
         queryDeteleSchool.mutate(id)
-
-
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire({
@@ -103,15 +84,11 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
         });
       }
     });
-
-
   }
-
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
   };
   const onNext = (page: number) => {
-    console.log(page + " -> " + page)
     if (data?.data?.length === undefined || data?.length < 5) {
       setCurrentPage(page)
     } else {
@@ -126,13 +103,11 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
     setOpen(false);
   };
   const handleClickAddCourseOpen = (row) => {
-
     setOpenSchool(true);
     setSchool(row)
   }
   return (
     <>
-
       <SchoolWithCourses coursesSchool={coursesSchool} school={school} openSchool={openSchool} setOpenSchool={setOpenSchool} />
       <BootstrapDialog
         onClose={handleClose}
@@ -140,7 +115,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
         open={open}
         fullWidth={fullWidth}
         maxWidth={maxWidth}
-
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
           {schoolInfo.name}
@@ -165,10 +139,8 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
               title="green iguana"
             />
             <CardContent>
-
               <div className='list-item'>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
@@ -185,8 +157,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                     </ListItemAvatar>
                     <ListItemText primary="Phone" secondary={schoolInfo.phone} />
                   </ListItem>
-
-
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
@@ -195,13 +165,10 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                     </ListItemAvatar>
                     <ListItemText primary="Zip Code" secondary={schoolInfo.zip_code} />
                   </ListItem>
-
                 </List>
-
               </div>
               <div className='list-item'>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
@@ -210,7 +177,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                     </ListItemAvatar>
                     <ListItemText primary="Email" secondary={schoolInfo.email} />
                   </ListItem>
-
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
@@ -219,10 +185,8 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                     </ListItemAvatar>
                     <ListItemText primary="Provider" secondary={schoolInfo.provider_number} />
                   </ListItem>
-
                 </List>
               </div>
-
               <hr />
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
@@ -249,7 +213,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                             <TableCell component="th" scope="row">
                               {course.name}
                             </TableCell>
-
                           </TableRow>
                           <TableRow>
                             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -263,27 +226,23 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                                       <TableRow>
                                         <TableCell>Date</TableCell>
                                         <TableCell align="left">Hours</TableCell>
-                    
                                       </TableRow>
                                     </TableHead>
                                     <TableBody>
                                       {
-                                        course.course_schools && course.course_schools?.map((item:any, index:any) => (
+                                        course.course_schools && course.course_schools?.map((item: any, index: any) => (
                                           <>
                                             <TableRow key={index}>
                                               <TableCell component="th" scope="row">
-                                               example
+                                                example
                                               </TableCell>
                                               <TableCell component="th" scope="row">
-                                              {item.id} hours
+                                                {item.id} hours
                                               </TableCell>
                                             </TableRow>
                                           </>
                                         ))
-
                                       }
-
-
                                     </TableBody>
                                   </Table>
                                 </Box>
@@ -299,8 +258,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
           </Card>
         </DialogContent>
       </BootstrapDialog>
-
-
       {
         (
           !isLoading ? (
@@ -333,7 +290,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                         </TableCell>
                         <TableCell align="left">{row.phone}</TableCell>
                         <TableCell>
-
                           <Button
                             color="inherit"
                             startIcon={<PlaylistAddIcon />}
@@ -341,7 +297,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                             Course
                           </Button>
                           <Button
-
                             startIcon={<ListAltIcon />}
                             onClick={() => handleClickOpen(row)}>
                             Info
@@ -351,7 +306,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                             color="success"
                             startIcon={<EditIcon />}
                             onClick={() => editByIdSchoolHandler(row)}>
-
                             Edit
                           </Button>
                           <Button className="btn btn-danger ml-1" color="error" onClick={() => deleteSchoolByIdHandler(row.id)} startIcon={<DeleteIcon />}>
@@ -363,7 +317,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
                   </TableBody>
                 </Table>
               </TableContainer>
-
               <hr />
               <div className='d-flex justify-content-between'>
                 <span>
@@ -388,7 +341,6 @@ export const ListSchool = ({ setValue, setSchoolData }:any) => {
             : <><Skeleton count={5} />
             </>)
       }
-
     </>
   )
 }

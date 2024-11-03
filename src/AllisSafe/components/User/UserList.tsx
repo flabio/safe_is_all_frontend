@@ -17,14 +17,12 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Icon from '@mui/material/Icon';
-
 import { DeleteUser, EditUserAvatar, EditUserPassword, queriesTodosUser } from '../../../services/UserService';
 import { UserContext } from '../../../hook';
 import { Avatar, Box, Button, Divider, FormControl, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { IUserRequest } from '../../../interfaces';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { UserModelPassword } from '../../model';
-
 
 export const UserList = ({ setValue }) => {
   const { dataContext, setDataContext }: any = useContext(UserContext);
@@ -46,16 +44,13 @@ export const UserList = ({ setValue }) => {
   const deleteUserByIdHandler = async (id: number) => {
     response.mutate(id)
   };
-
   const editByIdUserHandler = (user: IUserRequest) => {
     setDataContext(user)
     setValue(1)
   };
-
   const onPrevious = (page: number) => {
     setCurrentPage(page - 1)
   };
-
   const onNext = (page: number) => {
     if (data?.data?.length === undefined || data?.data?.length < 5) {
       setCurrentPage(page)
@@ -63,7 +58,6 @@ export const UserList = ({ setValue }) => {
       setCurrentPage(page + 1)
     }
   }
-
   const handleClickOpen = (row: IUserRequest) => {
     setOpen(true);
     setDataContext(row);
@@ -76,11 +70,9 @@ export const UserList = ({ setValue }) => {
     setOpen(false);
   }
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
   const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -93,7 +85,6 @@ export const UserList = ({ setValue }) => {
     data.append("file", file);
     editAvatar.mutate({ id: dataContext?.id, data });
   };
-
   const handleEditPasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     password.id=dataContext?.id
@@ -162,12 +153,10 @@ export const UserList = ({ setValue }) => {
                 }
                 label="Password confirmation"
                 name='password_confirmation'
-                
                 value={password.password_confirmation}
                 onChange={(e) => setPassword({...password, password_confirmation: e.target.value })}
               />
             </FormControl>
-
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 20 }}>
             <Button variant="contained" type='submit'>
@@ -228,6 +217,7 @@ export const UserList = ({ setValue }) => {
                       <TableCell align="left">First Name</TableCell>
                       <TableCell align="left">Last Name</TableCell>
                       <TableCell align="left">Phone</TableCell>
+                      <TableCell align="left">Rol</TableCell>
                       <TableCell align="center">Options</TableCell>
                     </TableRow>
                   </TableHead>
@@ -246,9 +236,9 @@ export const UserList = ({ setValue }) => {
                         <TableCell align="left">{row?.first_name}</TableCell>
                         <TableCell align="left">{row?.last_name} </TableCell>
                         <TableCell align="left">{row.phone}</TableCell>
+                        <TableCell align="left">{row.rol_name}</TableCell>
                         <TableCell align="center">
-                          <TableCell>
-
+                          <TableCell align="center">
                             <Button
                               color="inherit"
                               onClick={() => handleClickOpen(row)}>
@@ -268,7 +258,6 @@ export const UserList = ({ setValue }) => {
                               </Tooltip>
                             </Button>
                             <Button
-
                               onClick={() => detaildUserHandler(row)}>
                               <Tooltip color="primary" title="Detail">
                                 <IconButton>
@@ -285,7 +274,6 @@ export const UserList = ({ setValue }) => {
                                 </IconButton>
                               </Tooltip>
                             </Button>
-
                             <Button
                               onClick={() => deleteUserByIdHandler(row.id)} >
                               <Tooltip color="error" title="Delete">
@@ -320,13 +308,11 @@ export const UserList = ({ setValue }) => {
                   current page: <b>{data?.pageCount}  { }</b>
                 </span>
               </div>
-
             </>
           )
             : <><Skeleton count={5} />
             </>)
       }
-
     </>
   )
 }

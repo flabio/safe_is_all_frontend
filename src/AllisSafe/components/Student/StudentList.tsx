@@ -30,8 +30,6 @@ export const StudentList = () => {
   }
   return (
     <>
-
-
       {
         (
           !isLoading ? (
@@ -78,7 +76,7 @@ export const StudentList = () => {
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.first_name}</td>
-                      <td>{item.first_sur_name} {item.secon_sur_name}</td>
+                      <td>{item.last_name}</td>
                       <td>{item.phone}</td>
                       <td>{item.email}</td>
                       <td>{item.zip_code}</td>

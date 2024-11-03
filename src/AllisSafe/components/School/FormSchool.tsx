@@ -2,8 +2,6 @@ import  { useEffect, useState } from 'react'
 import { createSchool, editSchool } from '../../../services';
 import { SchoolModel } from '../../model';
 
-
-
 export const FormSchool = ({  schoolData }:any) => {
   const [school, setSchool] = useState(SchoolModel);
   const [file, setFile] = useState(null);
@@ -18,34 +16,21 @@ export const FormSchool = ({  schoolData }:any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const data = new FormData();
-
     for (const key in school){  
       data.append(key, school[key as keyof typeof school] as string);
     }
-  
-     // Agregar el archivo al objeto FormData
      if (file) {
       data.append("file", file);
     }
     if (school.id > 0) {
       editSchool(school.id,data)
-     // setSchoolData(school)
     } else {
       createSchool(data)
-      //setSchool(SchoolModel)
-
     }
-
-    // setTestData(true)
-
   }
-
- 
   return (
     <>
-
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-
         <div className="card-body">
         <div className="row">
             <div className="col-sm-12">
@@ -60,7 +45,6 @@ export const FormSchool = ({  schoolData }:any) => {
               </div>
             </div>
           </div>
-
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">
@@ -87,7 +71,6 @@ export const FormSchool = ({  schoolData }:any) => {
               </div>
             </div>
           </div>
-
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">
@@ -114,7 +97,6 @@ export const FormSchool = ({  schoolData }:any) => {
               </div>
             </div>
           </div>
-
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">
@@ -141,7 +123,6 @@ export const FormSchool = ({  schoolData }:any) => {
               </div>
             </div>
           </div>
-
         </div>
         <div className="card-footer">
           {
@@ -157,9 +138,6 @@ export const FormSchool = ({  schoolData }:any) => {
           }
         </div>
       </form>
-
-
-
     </>
   )
 }

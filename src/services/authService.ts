@@ -11,7 +11,7 @@ export const postLogin = async (newUser: ILogin) =>{
       localStorage.setItem('token',response.data);
       location.href="/dashboard"
       return response.data 
-   }).catch(err=>{
+   }).catch((err:any)=>{
       Swal.fire({
         title: "Error",
         text: "Usuario o contraseña incorrectos",
