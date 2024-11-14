@@ -320,7 +320,7 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
               <hr />
               <div className='d-flex justify-content-between'>
                 <span>
-                  total records: <b>{data?.total_count}</b>
+                  total records: <b>{data?.totalCount}</b>
                 </span>
                 <nav aria-label="...">
                   <ul className="pagination justify-content-center">

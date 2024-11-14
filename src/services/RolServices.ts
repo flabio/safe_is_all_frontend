@@ -4,7 +4,6 @@ import { IRol } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
 import { QueryAddRol, QueryTodosRoles, QueryDeteleRolById, QueryeditRolById } from "../queries";
 
-
 const keys = {
     queryKeyRol: ['rol'],
     queryKeyEditRolBydId: ['editRolById', { id: Number }],
@@ -12,7 +11,6 @@ const keys = {
     queryKeyAddRol: ['addRol'],
 };
 export const queriesTodosRol = () => {
-
     return useQuery({
         queryKey: [keys.queryKeyRol],  // Agregamos la página a la clave
         queryFn: () => QueryTodosRoles(), // Función de consulta
@@ -24,7 +22,6 @@ export const AddRol = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (course: IRol) => QueryAddRol(course),
-
         onSuccess: (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
@@ -32,9 +29,7 @@ export const AddRol = () => {
             });
         },
         onSettled: async () => {
-
             await queryClient.invalidateQueries({ queryKey: keys.queryKeyRol });
-
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -44,12 +39,10 @@ export const AddRol = () => {
         },
     })
 }
-
 export const EditRol = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (course: IRol) => QueryeditRolById(course),
-
         onSuccess: (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
@@ -67,7 +60,6 @@ export const EditRol = () => {
         },
     })
 }
-
 export const DeleteRol = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -85,7 +77,6 @@ export const DeleteRol = () => {
             });
         },
         onSettled: () => {
-
             queryClient.invalidateQueries({
                 queryKey: keys.queryKeyRol
             })

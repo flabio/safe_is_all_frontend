@@ -69,19 +69,9 @@ export const NavScreen = () => {
       <AppBar sx={{ backgroundColor: 'white' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* Logo */}
-            <Avatar
-              src={decodedPayload?.avatar || ''}
-              sx={{
-                width: 120,
-                height: 40,
-                marginLeft: 'auto',
-              }}
-            />
-
             {/* Texto de bienvenida */}
             <Box sx={{ flexGrow: 2, display: { xs: 'none', md: 'flex' } }}>
-              <Typography paragraph sx={{ paddingLeft: 14, paddingTop: 2, color: 'black' }}>
+              <Typography paragraph sx={{ paddingLeft: 30, paddingTop: 2, color: 'black' }}>
                 Welcome to All is Safe
               </Typography>
             </Box>

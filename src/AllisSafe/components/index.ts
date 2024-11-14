@@ -36,6 +36,9 @@ export * from './TopicClass/';
 //language
 export * from './Language/LanguageList';
 
+//module
+
+export * from './Module/';
 //common
 
 export * from './Common/';

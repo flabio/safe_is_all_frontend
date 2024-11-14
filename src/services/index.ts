@@ -7,3 +7,4 @@ export * from './RolServices';
 export * from './UserService';
 export * from './languajeService';
 export * from './topicService';
+export * from './moduleService';

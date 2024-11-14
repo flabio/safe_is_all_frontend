@@ -9,7 +9,7 @@ import { UserContext } from '../../../hook';
 
 
 export const RolPage = () => {
-  const { dataContext,setDataContext } = useContext(UserContext);
+  const { dataContext, setDataContext }: any = useContext(UserContext);
 
   const [value, setValue] = useState(0);
 
@@ -30,16 +30,15 @@ export const RolPage = () => {
             <Box sx={{ width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
-                  <Tab label="Lists" {...a11yProps(0)}  onClick={()=>handlerValue()} />
-                  <Tab  label= {`${dataContext?.id > 0?"Edit":"Create"}`}  {...a11yProps(1)} />
+                  <Tab label="Lists" {...a11yProps(0)} onClick={() => handlerValue()} />
+                  <Tab label={`${dataContext?.id > 0 ? "Edit" : "Create"}`}  {...a11yProps(1)} />
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
-                <RolListComponent  setValue={setValue} />
+                <RolListComponent setValue={setValue} />
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
-              <RolForm setValue={setValue} />
-                  
+                <RolForm setValue={setValue} />
               </CustomTabPanel>
             </Box>
           </div>

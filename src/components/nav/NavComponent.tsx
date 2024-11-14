@@ -19,6 +19,12 @@ export const NavComponent = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="rol" className="nav-link">
+              <i className="far fa-circle nav-icon"></i>
+              <p>Module</p>
+            </Link>
+          </li>
+          <li className="nav-item">
           <Link to="user" className="nav-link">
               <i className="far fa-circle nav-icon"></i>
               <p>User</p>

@@ -25,16 +25,13 @@ import {
     Public,
     Language,
 } from '@mui/icons-material';
-
 import { Link, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 export const AsideScreen = () => {
     let location = useLocation();
-
     let nameRutorClean = location.pathname.split('/');
     const [open, setOpen] = useState(false);
-
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -58,12 +55,12 @@ export const AsideScreen = () => {
                     }} variant="square">
                         A
                     </Avatar>
-
                     <Box sx={{ overflow: 'auto', color: 'black' }}>
                         <List>
                             {[
                                 { text: 'Dashboard', link: '/dashboard', icon: <Dashboard /> },
                                 { text: 'Rol', link: '/rol', icon: <People /> },
+                                { text: 'Module', link: '/module', icon: <People /> },
                                 { text: 'User', link: '/user', icon: <People /> },
                                 { text: 'Instructor', link: '/instructor', icon: <People /> },
                                 { text: 'Student', link: '/student', icon: <People /> },
