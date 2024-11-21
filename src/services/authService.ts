@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 export const postLogin = async (newUser: ILogin) =>{
    return await allIsSafeApi.post('/auth',{"username":newUser.username,'password':newUser.password}).then(response =>{
+      console.log(response);
       localStorage.setItem('token',response.data);
       location.href="/dashboard"
       return response.data 

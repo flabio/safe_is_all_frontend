@@ -34,7 +34,7 @@ export const ModulePage = () => {
                                 </Tabs>
                             </Box>
                             <CustomTabPanel value={value} index={0}>
-                                <ModuleListComponent />
+                                <ModuleListComponent setValue={setValue}/>
                             </CustomTabPanel>
                             <CustomTabPanel value={value} index={1}>
                                <ModuleFormComponent setValue={setValue}/>

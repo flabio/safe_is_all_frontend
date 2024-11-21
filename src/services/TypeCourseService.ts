@@ -1,44 +1,37 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { QueryAddTopic,
-         QueryDeteleTopicById, 
-         QueryeditTopicById, 
-         QueryTodosTopic, 
-         QueryTodosTopicWithCourse} from "../queries";
-import { ITopic } from "../interfaces";
+import {   QueryAddTypeCourse,  
+     QueryDeteleTypeCourseById,
+      QueryeditTypeCourseById,  
+     QueryTodosTypeCourses} from "../queries";
+import { ICourse, ITypeCourse } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
 
 
 const keys={
-    queryKeyTopic: ['topic'],
-    queryKeyTopicWithCourse: ['topicWithCourse'],
-    queryKeyEditTopicBydId: ['editTopicById', { id: Number }],
-    queryKeyDeleteTopicById: ['deleteTopicById', { id: Number }],
-    queryKeyAddTopic: ['addTopic'],
+    queryKeyTypeCourse: ['TypeCourses'],
+    
+    queryKeyEditCourseBydId: ['editCourseById', { id: Number }],
+    queryKeyDeleteCourseById: ['deleteCourseById', { id: Number }],
+    queryKeyAddCourse: ['addCity'],
  };
- export const queriesTodosTopics=() => {
+ export const queriesTodosTypeCourses=() => {
     return useQuery({
-        queryKey: keys.queryKeyTopic,
-        queryFn: QueryTodosTopic,
+        queryKey: keys.queryKeyTypeCourse,
+        queryFn: QueryTodosTypeCourses,
     })
  }
- export const queriesTodosTopicsBydCourseById=(id:number) => {
-    return useQuery({
-        queryKey: [keys.queryKeyTopicWithCourse,id],
-        queryFn:()=> QueryTodosTopicWithCourse(id),
-    })
- }
-export const AddTopic=() => {
+export const AddTypeCourse=() => {
     const queryClient= useQueryClient();
     return useMutation({
-        mutationFn: (topic: ITopic) => QueryAddTopic(topic),
-        onSuccess: (data: any) => {
+        mutationFn: (course: ITypeCourse) => QueryAddTypeCourse(course),
+        onSuccess: (data:any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
                 title: data?.data?.message
             });
         },
         onSettled: async () => {
-            await queryClient.invalidateQueries({queryKey: keys.queryKeyTopic});
+           await queryClient.invalidateQueries({queryKey: keys.queryKeyTypeCourse});
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -48,12 +41,10 @@ export const AddTopic=() => {
         },
     })
 }
-
-export const EditTopic=() => {
+export const EditTypeCourse=() => {
     const queryClient= useQueryClient();
     return useMutation({
-        mutationFn: (topic: ITopic) => QueryeditTopicById(topic),
-      
+        mutationFn: (course: ICourse) => QueryeditTypeCourseById(course),
         onSuccess: (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
@@ -61,12 +52,7 @@ export const EditTopic=() => {
             });
         },
         onSettled: async () => {
-
-           await queryClient.invalidateQueries({
-            queryKey: [keys.queryKeyTopic,keys.queryKeyEditTopicBydId[0]],
-            exact:true
-        });
-     
+           await queryClient.invalidateQueries({queryKey: keys.queryKeyTypeCourse});
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -76,11 +62,10 @@ export const EditTopic=() => {
         },
     })
 }
-
-export const useQueryDeleteTopic=() => {
+export const DeleteTypeCourse=() => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (id: number) => QueryDeteleTopicById(id),
+        mutationFn: (id: number) => QueryDeteleTypeCourseById(id),
         onError: (err: any) => {
             ToastAlert.fire({
                 icon: "error",
@@ -94,8 +79,9 @@ export const useQueryDeleteTopic=() => {
             });
         },
         onSettled: () => {
-            queryClient.invalidateQueries({queryKey: [keys.queryKeyTopicWithCourse]})
-            
+            queryClient.invalidateQueries({
+                queryKey: keys.queryKeyTypeCourse
+            })
         }
     });
 }

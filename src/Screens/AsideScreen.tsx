@@ -2,7 +2,7 @@
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import { NavComponent } from '../components/nav/NavComponent'
 import { Home } from '@mui/icons-material'
-import { useState } from 'react'; import {
+import { useEffect, useState } from 'react'; import {
     Drawer,
     List,
     ListItem,
@@ -16,25 +16,32 @@ import { useState } from 'react'; import {
     Avatar,
     Breadcrumbs,
 } from '@mui/material';
-import {
-    Dashboard,
-    People,
-    School,
-    Class,
-    LocationCity,
-    Public,
-    Language,
-} from '@mui/icons-material';
+
+import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import { Link, useLocation } from 'react-router-dom';
+import { useQueryModules } from '../services';
 
 const drawerWidth = 240;
 export const AsideScreen = () => {
     let location = useLocation();
     let nameRutorClean = location.pathname.split('/');
-    const [open, setOpen] = useState(false);
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
+    const { data } = useQueryModules();
+
+
+    const [decodedPayload, setDecodedPayload] = useState([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            try {
+                const [, payload] = token.split('.');
+                const data = JSON.parse(atob(payload));
+                setDecodedPayload(data);
+            } catch (error) {
+                console.error("Error decoding token:", error);
+            }
+        }
+    }, []);
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -51,12 +58,43 @@ export const AsideScreen = () => {
                         width: 130,
                         height: 70,
                         left: 10,
-
                     }} variant="square">
                         A
                     </Avatar>
                     <Box sx={{ overflow: 'auto', color: 'black' }}>
                         <List>
+                            {data && data.data
+                                .filter(module =>
+                                    module.module_role &&
+                                    module.module_role.some(item => item.role_id === decodedPayload?.rol?.id)
+                                )
+                                .sort((a, b) => a.order - b.order)
+                                .map((module) => (
+                                    <ListItem
+                                        sx={{ color: 'black' }}
+                                        button
+                                        key={module.Id}
+                                        component={Link} to={module?.icon}
+                                    >
+                                        <ListItemIcon><TripOriginIcon /></ListItemIcon>
+                                        <ListItemText className='text-capitalize' primary={module.name} />
+                                    </ListItem>
+                                ))}
+
+                        </List>
+                        {/* <List>
+                            {decodedPayload && decodedPayload?.rol?.role_module?.map((item, index) => (
+                                <ListItem
+                                    sx={{ color: 'black' }}
+                                    button
+                                    key={index}
+                                    component={Link} to={item.module.name}>
+                                    <ListItemIcon> <TripOriginIcon /></ListItemIcon>
+                                    <ListItemText className='text-capitalize' primary={item.module.name} />
+                                </ListItem>
+                            ))}
+                        </List> */}
+                        {/* <List>
                             {[
                                 { text: 'Dashboard', link: '/dashboard', icon: <Dashboard /> },
                                 { text: 'Rol', link: '/rol', icon: <People /> },
@@ -79,7 +117,7 @@ export const AsideScreen = () => {
                                     <ListItemText primary={item.text} />
                                 </ListItem>
                             ))}
-                        </List>
+                        </List> */}
                     </Box>
                 </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>

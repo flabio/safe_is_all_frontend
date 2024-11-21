@@ -4,31 +4,30 @@ import { ICourse, ICourseSchool } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
 
 
-const keys={
+const keys = {
     queryKeyCourse: ['courses'],
     queryKeyCourseSchool: ['coursesSchool'],
     queryKeyEditCourseBydId: ['editCourseById', { id: Number }],
     queryKeyDeleteCourseById: ['deleteCourseById', { id: Number }],
     queryKeyAddCourse: ['addCity'],
- };
- export const queriesTodosCourses=() => {
+};
+export const queriesTodosCourses = () => {
     return useQuery({
         queryKey: keys.queryKeyCourse,
         queryFn: QueryTodosCourses,
     })
- }
+}
 
- export const queriesTodosCoursesSchool=() => {
+export const queriesTodosCoursesSchool = () => {
     return useQuery({
         queryKey: keys.queryKeyCourseSchool,
         queryFn: QueryTodosCourseSchool,
     })
- }
-export const AddCourse=() => {
-    const queryClient= useQueryClient();
+}
+export const AddCourse = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (course: ICourse) => QueryAddCourse(course),
-      
         onSuccess: (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
@@ -36,9 +35,7 @@ export const AddCourse=() => {
             });
         },
         onSettled: async () => {
-
-           await queryClient.invalidateQueries({queryKey: keys.queryKeyCourse});
-     
+            await queryClient.invalidateQueries({ queryKey: keys.queryKeyCourse });
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -49,11 +46,10 @@ export const AddCourse=() => {
     })
 }
 
-export const EditCourse=() => {
-    const queryClient= useQueryClient();
+export const EditCourse = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (course: ICourse) => QueryeditCourseById(course),
-      
         onSuccess: (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
@@ -61,9 +57,7 @@ export const EditCourse=() => {
             });
         },
         onSettled: async () => {
-
-           await queryClient.invalidateQueries({queryKey: keys.queryKeyCourse});
-     
+            await queryClient.invalidateQueries({ queryKey: keys.queryKeyCourse });
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -74,7 +68,7 @@ export const EditCourse=() => {
     })
 }
 
-export const DeleteCourse=() => {
+export const DeleteCourse = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (id: number) => QueryDeteleCourseById(id),
@@ -84,14 +78,14 @@ export const DeleteCourse=() => {
                 title: err.message
             });
         },
-        onSuccess: (data: any,variables:any) => {
+        onSuccess: (data: any, variables: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
-                title: data?.data?.message +" "+variables
+                title: data?.data?.message + " " + variables
             });
         },
         onSettled: () => {
-           
+
             queryClient.invalidateQueries({
                 queryKey: keys.queryKeyCourse
             })
@@ -101,24 +95,24 @@ export const DeleteCourse=() => {
 
 // course with school
 
-export const AddCourseSchool=() => {
-    const queryClient= useQueryClient();
+export const AddCourseSchool = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (course: ICourseSchool) => QueryAddCourseSchool(course),
-      
-        onSuccess:async (data: any) => {
+
+        onSuccess: async (data: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
                 title: data?.data?.message
             });
-            
-           await queryClient.invalidateQueries({queryKey: keys.queryKeyCourseSchool});
-     
+
+            await queryClient.invalidateQueries({ queryKey: keys.queryKeyCourseSchool });
+
         },
         onSettled: async () => {
 
-           await queryClient.invalidateQueries({queryKey: keys.queryKeyCourseSchool});
-     
+            await queryClient.invalidateQueries({ queryKey: keys.queryKeyCourseSchool });
+
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -129,7 +123,7 @@ export const AddCourseSchool=() => {
     })
 }
 
-export const DeleteCourseSchool=() => {
+export const DeleteCourseSchool = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (id: number) => QueryDeteleCourseSchoolById(id),
@@ -139,10 +133,10 @@ export const DeleteCourseSchool=() => {
                 title: err.message
             });
         },
-        onSuccess: (data: any,variables:any) => {
+        onSuccess: (data: any, variables: any) => {
             ToastAlert.fire({
                 icon: data?.status === 400 ? "info" : "success",
-                title: data?.data?.message +" "+variables
+                title: data?.data?.message + " " + variables
             });
         },
         onSettled: () => {

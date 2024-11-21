@@ -1,6 +1,6 @@
 
 import { SyntheticEvent, useContext, useState } from 'react';
-import { RolListComponent, RolForm } from '../../components';
+import { RolListComponent, RolForm, ListRolModuleComponent } from '../../components';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -32,6 +32,7 @@ export const RolPage = () => {
                 <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
                   <Tab label="Lists" {...a11yProps(0)} onClick={() => handlerValue()} />
                   <Tab label={`${dataContext?.id > 0 ? "Edit" : "Create"}`}  {...a11yProps(1)} />
+                  <Tab label="Module" {...a11yProps(2)} />
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
@@ -39,6 +40,9 @@ export const RolPage = () => {
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
                 <RolForm setValue={setValue} />
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={2}>
+                <ListRolModuleComponent setValue={setValue} />
               </CustomTabPanel>
             </Box>
           </div>

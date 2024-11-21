@@ -8,9 +8,9 @@ export const ModuleFormComponent = ({ setValue }) => {
     const [modules, setModules] = useState(ModuleModel);
     const addMutuation = useQueryAddModule();
     const editMutuation = useQueryEditModule();
-
+   
     useEffect(() => {
-        if (dataContext?.id > 0) {
+        if (dataContext?.Id > 0) {
             setModules(dataContext);
         } else {
             setModules(modules);
@@ -18,7 +18,7 @@ export const ModuleFormComponent = ({ setValue }) => {
     }, [dataContext]);
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        if (modules.id > 0) {
+        if (modules.Id > 0) {
             editMutuation.mutate({ ...modules })
         } else {
             addMutuation.mutate({ ...modules })
@@ -32,13 +32,25 @@ export const ModuleFormComponent = ({ setValue }) => {
             <form onSubmit={handleSubmit}>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="inputName">Name</label>
+                        <label htmlFor="inputName">Title</label>
                         <input type="text"
                             className="form-control"
-                            placeholder="Enter name"
+                            placeholder="Enter tile"
                             name='name'
                             value={modules.name}
                             onChange={(e) => setModules({ ...modules, name: e.target.value })}
+                        />
+                    </div>
+                </div>
+                <div className="card-body">
+                    <div className="form-group">
+                        <label htmlFor="inputName">Path</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Enter path name"
+                            name='icon'
+                            value={modules.icon}
+                            onChange={(e) => setModules({ ...modules, icon: e.target.value })}
                         />
                     </div>
                 </div>

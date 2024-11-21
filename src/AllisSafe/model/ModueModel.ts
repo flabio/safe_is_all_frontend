@@ -1,6 +1,7 @@
 export const ModuleModel={
-    id: 0,
+    Id: 0,
     name: "",
+    icon: "",
     order: 0,
     active: true
 }

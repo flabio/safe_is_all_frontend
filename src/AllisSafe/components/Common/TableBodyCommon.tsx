@@ -3,9 +3,15 @@ import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, 
 import Skeleton from 'react-loading-skeleton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useQueryDeleteTopic } from '../../../services';
 
 export const TableBodyCommon = ({ dataTopic }: any) => {
   const { isLoading, data } = dataTopic;
+  const deleteTopic = useQueryDeleteTopic()
+  const deleteTopicHandler = (id: number) => {
+    deleteTopic.mutate(id)
+  }
+
   return (
     <>
 
@@ -48,6 +54,7 @@ export const TableBodyCommon = ({ dataTopic }: any) => {
                         className="btn btn-danger ml-1"
                         color="error"
                         startIcon={<DeleteIcon />}
+                        onClick={() => deleteTopicHandler(row.id)}
                       >
                         Remove
                       </Button>

@@ -1,9 +1,15 @@
-export interface ICourse {
+export interface ITypeCourse {
     id: number;
     name: string;
     active: boolean;
 }
 
+export interface ICourse {
+    id: number;
+    name: string;
+    type_course_id: number;
+    active: boolean;
+}
 
 export interface ICourseSchool {
     id: number;

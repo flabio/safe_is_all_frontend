@@ -8,13 +8,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { queriesTodosRol } from '../../../services';
 import { UserContext } from '../../../hook';
-import { RolWithModule } from './RolWithModule';
+
 
 export const RolListComponent = ({ setValue }: any) => {
   const { data, isLoading } = queriesTodosRol()
   const { setDataContext } = useContext(UserContext);
-  const [rol, setRol] = useState({});
-  const [open, setOpen] = useState(false);
+
   const editByIdRolHandler = async (rol: IRol) => {
     setDataContext(rol)
     setValue(1)
@@ -24,12 +23,12 @@ export const RolListComponent = ({ setValue }: any) => {
     await deteleRolById(id)
   }
   const handleClickAddCourseOpen = (row:IRol) => {
-    setOpen(true);
-    setRol(row)
+    setDataContext(row)
+    setValue(2)
   }
   return (
     <>
-    <RolWithModule  rol={rol} open={open} setOpen={setOpen} />
+
       {
         (
           !isLoading ? (

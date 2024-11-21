@@ -6,3 +6,4 @@ export * from './RolQueries';
 export * from './LanguajeQueries';
 export * from './TopicQueries';
 export * from './ModuleQueries';
+export * from './TypeCourseQueres';

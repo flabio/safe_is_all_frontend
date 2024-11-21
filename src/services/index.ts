@@ -8,3 +8,4 @@ export * from './UserService';
 export * from './languajeService';
 export * from './topicService';
 export * from './moduleService';
+export * from './TypeCourseService';

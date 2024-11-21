@@ -44,6 +44,7 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
   const { data, isLoading } = QueriesTodosSchools(currentPage)
   const coursesSchool = queriesTodosCoursesSchool()
   const queryDeteleSchool = DeleteSchoolById(currentPage)
+
   const editByIdSchoolHandler = async (school: ISchool) => {
     setSchoolData(school)
     setFullWidth(true)
@@ -95,8 +96,9 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
       setCurrentPage(currentPage + page)
     }
   }
-  const handleClickOpen = (school) => {
+  const handleClickOpen = (school:ISchool) => {
     setOpen(true);
+    console.log(school)
     setSchoolInfo(school);
   };
   const handleClose = () => {

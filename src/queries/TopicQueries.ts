@@ -8,7 +8,7 @@ export const QueryTodosTopic = async () => {
   }
   export const QueryTodosTopicWithCourse = async (id:number) => {
     const response: ApiResponses<DataResponse<ITopic>> = await (await allIsSafeApi.get<any>( `/topic/course/${id}`)).data
-   return (response).data
+    return (response).data
   }
   
 export  const QueryAddTopic = async (data: ITopic) =>  await allIsSafeApi.post(`/topic`, { ...data })

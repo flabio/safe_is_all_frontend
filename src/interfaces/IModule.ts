@@ -1,6 +1,7 @@
 export interface IModule{
-    id: number;
+    Id: number;
     name: string;
+    icon?:string;
     order: number;
     active: boolean;
 }

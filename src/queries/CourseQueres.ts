@@ -4,7 +4,7 @@ import { ApiResponses, ICourse, DataResponse, ICourseSchool } from "../interface
 
 export const QueryTodosCourses = async () => {
     const response: ApiResponses<DataResponse<ICourse>> = await (await allIsSafeApi.get('/course')).data
-   return (response).data
+    return (response).data
   }
 
 export  const QueryAddCourse = async (data: ICourse) =>  await allIsSafeApi.post(`/course`, { ...data })

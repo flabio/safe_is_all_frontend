@@ -3,6 +3,7 @@ export * from './Dashboard/DashboardComponent';
 //rol
 export * from './Rol/RolListComponent';
 export * from './Rol/RolForm';
+export * from './Rol/ListRolModuleComponent';
 //user
 export * from './User/UserList';
 export * from './User/UserDetail';
@@ -29,6 +30,7 @@ export * from './State/';
 //course
 
 export * from './Course/';
+export * from './TypeCourse/';
 
 //topic
 

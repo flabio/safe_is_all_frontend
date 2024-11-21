@@ -6,7 +6,7 @@ export const QueryTodosModules = async () => {
     return (response)
   }
 export  const QueryAddModule = async (data: IModule) =>  await allIsSafeApi.post(`/module`, { ...data })
-export  const QueryeditModuleById = async (data: IModule) => await allIsSafeApi.put(`/module/${data.id}`, { ...data })
+export  const QueryeditModuleById = async (data: IModule) => await allIsSafeApi.put(`/module/${data.Id}`, { ...data })
 export  const QueryDeteleModuleById = async (id: number) =>  await allIsSafeApi.delete(`/module/${id}`)
 //module with role
 export  const QueryAddModuleRole = async (data: IModuleRole) =>  await allIsSafeApi.post(`/module/role`, { ...data })

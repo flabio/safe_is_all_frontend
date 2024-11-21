@@ -21,18 +21,12 @@ export const NavScreen = () => {
   const [decodedPayload, setDecodedPayload] = React.useState(null);
 
   React.useEffect(() => {
-    // Obtenemos el token de localStorage y verificamos si existe
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        // Dividir el token en sus tres partes
         const [header, payload] = token.split('.');
-
-        // Decodificar el header y el payload (Base64)
         const decodedHeader = JSON.parse(atob(header));
         const decodedPayload = JSON.parse(atob(payload));
-
-    
         setDecodedPayload(decodedPayload);
       } catch (error) {
         console.error("Error decoding token:", error);

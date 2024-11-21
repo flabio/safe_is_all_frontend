@@ -63,7 +63,8 @@ export const useQueryDeleteModule=()=>{
                 icon: "success",
                 title: data?.data?.message 
             });
-            queryClient.invalidateQueries({queryKey:keys.queryKeyModules});
+            queryClient.invalidateQueries({ queryKey: [keys.queryKeyModules] });
+
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -83,11 +84,9 @@ export const useQueryAddModuleRole=()=>{
                 icon: "success",
                 title: data?.data?.message 
             });
-            queryClient.invalidateQueries({queryKey:keys.queryKeyModules});
-          
         },
         onSettled:() => {
-            queryClient.invalidateQueries({queryKey:keys.queryKeyModules});
+            queryClient.invalidateQueries({ queryKey: [keys.queryKeyModules] });
         },
         onError: (err: any) => {
             ToastAlert.fire({
@@ -106,7 +105,7 @@ export const useQueryDeleteModuleRole=()=>{
                 icon: "success",
                 title: data?.data?.message 
             });
-            queryClient.invalidateQueries({queryKey:keys.queryKeyModules});
+            queryClient.invalidateQueries({ queryKey: [keys.queryKeyModules] });
         },
         onError: (err: any) => {
             ToastAlert.fire({
