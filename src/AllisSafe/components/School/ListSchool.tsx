@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 import { ISchool } from '../../../interfaces';
-import { DeleteSchoolById, queriesTodosCoursesSchool, QueriesTodosSchools } from '../../../services';
+import { DeleteSchoolById, queriesTodosCoursesByIdSchool, queriesTodosCoursesSchool, QueriesTodosSchools } from '../../../services';
 import Swal from 'sweetalert2';
 import "./style.css";
 import { useState } from 'react';
@@ -42,7 +42,9 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
   const [school, setSchool] = useState(0);
   const [openSchool, setOpenSchool] = useState(false);
   const { data, isLoading } = QueriesTodosSchools(currentPage)
+  const { data: coursesByIdschool } = queriesTodosCoursesByIdSchool(schoolInfo?.id)
   const coursesSchool = queriesTodosCoursesSchool()
+
   const queryDeteleSchool = DeleteSchoolById(currentPage)
 
   const editByIdSchoolHandler = async (school: ISchool) => {
@@ -98,11 +100,11 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
   }
   const handleClickOpen = (school:ISchool) => {
     setOpen(true);
-    console.log(school)
     setSchoolInfo(school);
   };
   const handleClose = () => {
     setOpen(false);
+    setSchoolInfo({})
   };
   const handleClickAddCourseOpen = (row) => {
     setOpenSchool(true);
@@ -200,8 +202,10 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
                   </TableHead>
                   <TableBody>
                     {
-                      coursesSchool.data?.map((course) => course.course_schools[0]?.school_id === schoolInfo?.id && (
-                        <>
+                      coursesByIdschool && coursesByIdschool?.map((item) =>  (
+                    
+                     <>
+                      
                           <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                             <TableCell>
                               <IconButton
@@ -213,7 +217,7 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
                               </IconButton>
                             </TableCell>
                             <TableCell component="th" scope="row">
-                              {course.name}
+                              {item?.course?.name}
                             </TableCell>
                           </TableRow>
                           <TableRow>
@@ -226,32 +230,34 @@ export const ListSchool = ({ setValue, setSchoolData }: any) => {
                                   <Table size="small" aria-label="purchases">
                                     <TableHead>
                                       <TableRow>
-                                        <TableCell>Date</TableCell>
+                                        <TableCell>Title</TableCell>
                                         <TableCell align="left">Hours</TableCell>
                                       </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                      {
-                                        course.course_schools && course.course_schools?.map((item: any, index: any) => (
+                                  {
+                                        item && item.course?.topic?.map((topic: any, index: any) => (
                                           <>
                                             <TableRow key={index}>
                                               <TableCell component="th" scope="row">
-                                                example
+                                                {topic.title}
                                               </TableCell>
                                               <TableCell component="th" scope="row">
-                                                {item.id} hours
+                                                {topic.time_hours} hours
                                               </TableCell>
                                             </TableRow>
                                           </>
                                         ))
-                                      }
+                                      } 
                                     </TableBody>
                                   </Table>
                                 </Box>
                               </Collapse>
                             </TableCell>
                           </TableRow>
-                        </>
+                     
+                 
+                      </>
                       ))}
                   </TableBody>
                 </Table>

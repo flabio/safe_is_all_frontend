@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { QueryAddCourse, QueryAddCourseSchool, QueryDeteleCourseById, QueryDeteleCourseSchoolById, QueryeditCourseById, QueryTodosCourses, QueryTodosCourseSchool } from "../queries";
+import { QueryAddCourse, QueryAddCourseSchool, QueryDeteleCourseById, QueryDeteleCourseSchoolById, QueryeditCourseById, QueryTodosCourseByIdSchool, QueryTodosCourses, QueryTodosCourseSchool } from "../queries";
 import { ICourse, ICourseSchool } from "../interfaces";
 import { ToastAlert } from "../AllisSafe/helpers";
 
@@ -7,6 +7,7 @@ import { ToastAlert } from "../AllisSafe/helpers";
 const keys = {
     queryKeyCourse: ['courses'],
     queryKeyCourseSchool: ['coursesSchool'],
+    queryKeyCourseBydIdSchool: ['coursesByIdSchool',{id:Number}],
     queryKeyEditCourseBydId: ['editCourseById', { id: Number }],
     queryKeyDeleteCourseById: ['deleteCourseById', { id: Number }],
     queryKeyAddCourse: ['addCity'],
@@ -24,6 +25,13 @@ export const queriesTodosCoursesSchool = () => {
         queryFn: QueryTodosCourseSchool,
     })
 }
+export const queriesTodosCoursesByIdSchool = (id:number) => {
+    return useQuery({
+        queryKey: [keys.queryKeyCourseBydIdSchool,id],
+        queryFn:()=> QueryTodosCourseByIdSchool(id),
+    })
+}
+
 export const AddCourse = () => {
     const queryClient = useQueryClient();
     return useMutation({
