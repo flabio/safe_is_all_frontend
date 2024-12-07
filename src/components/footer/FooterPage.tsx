@@ -1,24 +1,13 @@
-
-
+import './style.css';
 
 export const FooterPage = () => {
     return (
         <>
+
+
+
             <div className="footer bg-dark pt-5 pb-4 pb-lg-5" data-bs-theme="dark">
-                <div className="content-circle">
-                    <div className="box-circle">
-                        <img src="/img/IMG-20240802-WA0082.jpg" alt="Image" />
-                    </div>
-                    <div className="box-circle">
-                        <img src="/img/IMG-20240802-WA0049.jpg" alt="Image" />
-                    </div>
-                    <div className="box-circle">
-                        <img src="/img/IMG-20240802-WA0040.jpg" alt="Image" />
-                    </div>
-                    <div className="box-circle">
-                        <img src="/img/IMG-20240802-WA0043.jpg" alt="Image" />
-                    </div>
-                </div>
+            
                 <div className="box-border"> </div>
                 <div className="footer-square">
                     <div className="box-footer">

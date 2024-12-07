@@ -1,10 +1,23 @@
 .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header{
     background-color: white ;
     float: left;
     position: absolute;
     height: 60px;
     width: 100%;  
     border-bottom: solid 1px #fc7316;
+}
+.btn-login{
+    margin-right: 10px;
+}
+.logo-header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .logo-header{
     float: left;
@@ -18,3 +31,51 @@
     margin-left: 10px;
 
 }
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Contenedor del buscador */
+  .search-container {
+    display: flex;
+    align-items: center;
+  
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 5px;
+    width: 600px; /* Ancho del contenedor */
+    margin: 20px auto; /* Centrado en la página */
+  }
+  
+  /* Entrada de texto */
+  .search-input {
+    flex: 1;
+    border: none;
+    border-radius: 20px;
+    border: orange solid 1px;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    color: #808080; /* Color del texto */
+  }
+  
+  /* Botón de búsqueda */
+  .search-button {
+    background-color: #3a3f51; /* Color del botón */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  /* Icono de la lupa */
+  .search-icon {
+    color: white;
+    font-size: 18px;
+  }
+  

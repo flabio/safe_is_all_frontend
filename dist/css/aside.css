@@ -1,3 +1,7 @@
+.text-capitalize{
+    text-transform: capitalize;
+}
+
 aside{
     float: left;
     background-color: white;

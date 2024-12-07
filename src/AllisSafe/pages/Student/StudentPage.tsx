@@ -1,62 +1,48 @@
 
 
 
-import { useContext, useState } from 'react'
+import React,{ SyntheticEvent, useContext, useState } from 'react'
 import { UserContext } from '../../../hook';
 import { StudentForm, StudentList } from '../../components';
 
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { a11yProps, CustomTabPanel } from '../../helpers';
 export const StudentPage = () => {
-    const [flagSelected, setFlagSelected] = useState<boolean>(true)
-    const {  setDataContext } = useContext(UserContext);
-  
-       
-  
-    const flagSelectedHandler = (flag: boolean) => {
-        setFlagSelected(flag)
+
+    const { dataContext, setDataContext } = useContext(UserContext);
+    const [value, setValue] = useState(0);
+    const [currentRol,setCurrentRol]=useState(0);
+    const handleChange = (event: SyntheticEvent, newValue: number) => {
+        event.preventDefault();
+        setValue(newValue);
         setDataContext({})
-    }
+
+    };
+
     return (
         <>
-            <div className='row'>
-                <div className="col-12">
-                    <div className="card card-orange">
-                        <div className="card-header p-2">
-                            <ul className="nav nav-pills">
-                                <li className="nav-item">
-                                    <a className="nav-link" onClick={() => flagSelectedHandler(true)}>
-                                        <i className='fa fa-list'></i> Users
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" onClick={() => flagSelectedHandler(false)}>
-                                        <i className='fa fa-plus'></i>  Create user
-                                    </a>
-                                </li>
-  
-                            </ul>
-                        </div>
-                        <div className="card-body">
-                            {
-                                flagSelected ? (
-                                    <>
-                                        <div className="tab-content">
-                                            <div className="card-body" >
-                                                <StudentList/>
-                                            </div>
-                                        </div>
-                                    </>
-                                ) :
-                                    <>
-                                        <div className="tab-content">
-                                            <StudentForm/>
-                                        </div>
-                                    </>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+         <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs className='card-header' value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Lists" {...a11yProps(0)} />
+                        <Tab label={`${dataContext?.id > 0 ? "Editar" : "Create"}`} {...a11yProps(1)}   onClick={()=>setCurrentRol(3)}/>
+                        <Tab label="Detail" {...a11yProps(2)} />
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    <StudentList setValue={setValue} />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                <StudentForm currentRol={currentRol} />
+                </CustomTabPanel>
+                {/* <CustomTabPanel value={value} index={2}>
+                    <UserDetail />
+                </CustomTabPanel> */}
+                
+            </Box>
+               </>
     )
   }
   

@@ -212,10 +212,9 @@ export const UserList = ({ setValue }) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>#</TableCell>
+      
                       <TableCell align="center">Avatar</TableCell>
-                      <TableCell align="left">First Name</TableCell>
-                      <TableCell align="left">Last Name</TableCell>
+                      <TableCell align="left">Full Name</TableCell>
                       <TableCell align="left">Phone</TableCell>
                       <TableCell align="left">Rol</TableCell>
                       <TableCell align="center">Options</TableCell>
@@ -227,14 +226,11 @@ export const UserList = ({ setValue }) => {
                         key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
-                        <TableCell component="th" scope="row">
-                          {row.id}
-                        </TableCell>
+                    
                         <TableCell align="center">
                           <Avatar alt={row?.first_name} src={row?.avatar} variant="rounded" />
                         </TableCell>
-                        <TableCell align="left">{row?.first_name}</TableCell>
-                        <TableCell align="left">{row?.last_name} </TableCell>
+                        <TableCell align="left">{row?.first_name} {row?.last_name} </TableCell>
                         <TableCell align="left">{row.phone}</TableCell>
                         <TableCell align="left">{row.rol_name}</TableCell>
                         <TableCell align="center">

@@ -53,7 +53,7 @@ export const ContactComponent = () => {
                                 </>
                             ) : (<>
 
-                                <h3>Login into All Is Safe!</h3>
+                                <h3>Sing in into All Is Safe!</h3>
 
                                 <p>Nice to see you! Please log in with your account.</p>
 

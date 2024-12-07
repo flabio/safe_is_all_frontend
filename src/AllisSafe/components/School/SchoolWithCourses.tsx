@@ -48,12 +48,12 @@ export const SchoolWithCourses = ({ coursesSchool, school, openSchool, setOpenSc
     autoComplementeData(data)
   }, [data]);
   const autoComplementeData = async (data) => {
-    console.log(data)
+    
     setAutoSelection(data?.map((item: any) => ({
       label: item.name,
       id: item.id,
     })));
-    console.log(autoSelection)
+    
   }
   const handleChangeAutoComplete = (event: InputEventInit, value) => {
     setCourse({

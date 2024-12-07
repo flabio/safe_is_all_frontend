@@ -1,27 +1,53 @@
 
 import './footer.css';
+
+
 export const FooterComponent = () => {
   return (
     <>
-    <div className="footer bg-dark pt-5 pb-4 pb-lg-5" data-bs-theme="dark">
-        <div className="content-circle">
-            
-            <div className="box-circle">
-               
-                <img src="/img/IMG-20240802-WA0082.jpg" alt="Image"/>
-                <span>Title</span>
-            </div>
-            <div className="box-circle">
-                <img src="/img/IMG-20240802-WA0049.jpg" alt="Image"/>
-            </div>
-            <div className="box-circle">
-                <img src="/img/IMG-20240802-WA0040.jpg" alt="Image"/>
-            </div>
-            <div className="box-circle">
-                <img src="/img/IMG-20240802-WA0043.jpg" alt="Image" />
-            </div>
-    
+      <div className="box-border">   </div>
+      <footer className="footer">
+        <div className="footer-container">
+           
+      <div className="footer-section">
+        <div className="logo-header">
+        <img src="/public/img/ogo.png" alt="All Is Safe" />
+      </div>
+      <br/>
+      <br/>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">News and Blogs</a></li>
+          <li><a href="#">Career</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      
+        <div className="footer-section">
+   
+      </div>
+
+
+          <div className="footer-section contact">
+            <h4>Contact</h4>
+            <p>Phone: +1(929)356-1525</p>
+            <p>Time: 8AM to 8PM IST</p>
+            <p>Email: info@allissafetytraining.com</p>
+         
+          </div>
         </div>
+        <div className="footer-bottom">
+          <p>© 2024 All is safe.</p>
+          {/* <div className="footer-links">
+            <a href="#">Terms of use</a>
+            <a href="#">Cookies Settings</a>
+            <a href="#">Privacy policy</a>
+          </div> */}
+        </div>
+      </footer>
+      {/* <div className="footer bg-dark pt-5 pb-4 pb-lg-5" data-bs-theme="dark">
+  
         <div className="box-border">
         <div className="box-footer">
             <p>
@@ -84,7 +110,7 @@ export const FooterComponent = () => {
 </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            ></script>
+            ></script> */}
 
     </>
   )

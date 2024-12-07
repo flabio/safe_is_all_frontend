@@ -26,7 +26,7 @@ export const LoginPage = () => {
           <ContactComponent />
         </div>
       </div>
-      <FooterComponent />
+ <FooterComponent />
     </>
   )
 }

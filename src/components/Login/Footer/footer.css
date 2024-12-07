@@ -109,3 +109,280 @@
     text-align: justify;
    float: left;
 } */
+
+
+
+
+/* styles.css */
+/* General Container */
+.course-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Course Card */
+  .course-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Course Image */
+  .course-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  /* Course Info */
+  .course-info {
+    padding: 15px;
+  }
+  
+  .categories {
+    margin-bottom: 10px;
+  }
+  
+  .category {
+    background-color: #e0f4ff;
+    color: #007bff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+  .course-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .rating {
+    color: #f39c12;
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+  
+  .details {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .instructor {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: 20px;
+  }
+  
+  .instructor-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .instructor span {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  
+  /* Course Footer */
+  .course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #ddd;
+  }
+  
+  .price {
+    color: orange;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .students {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  img.instructor-image {
+    height: 60px !important;
+    width: 76px!important;
+    border-radius: 10px;
+ 
+}
+  .course-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .course-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .course-content {
+    padding: 15px;
+  }
+  
+  .course-content h4 {
+    color: #ff8c00;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .course-content h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .course-content p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+
+  /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #111;
+  color: #ccc;
+}
+
+.footer {
+  background-color: #1a1a2e;
+  color: #ccc;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 8px 0;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #00f;
+}
+
+.brand h3 {
+  color: #fff;
+}
+
+.language-settings button {
+  margin-right: 10px;
+  background-color: #444;
+  color: #ccc;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.language-settings button:hover {
+  background-color: #666;
+}
+
+.contact p {
+  margin: 8px 0;
+}
+
+.app-buttons button {
+  margin-right: 10px;
+  background-color: #444;
+  color: #ccc;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.app-buttons button:hover {
+  background-color: #666;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #ccc;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00f;
+}

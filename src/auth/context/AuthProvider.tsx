@@ -14,7 +14,7 @@ export const AuthProvider =({children}:any)=>{
             type:types.login,
             payload:name,
         }
-        dispatch(action);
+        //dispatch(action);
     }
     return (
         <AuthContext.Provider value={{

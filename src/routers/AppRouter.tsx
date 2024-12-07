@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage } from "../auth";
+import { HomePage, LoginPage } from "../auth";
 import { AppPrivateRouter } from "./AppPrivateRouter";
 import { AllIsSafeRouter } from "../AllisSafe";
 
@@ -7,25 +7,27 @@ export const AppRouter = () => {
   const authStatus = localStorage.getItem('token') ? 'authenticated' : 'not-authenticated';
 
   return (
-    <>
-      <Routes>
-        {/* Si el usuario no está autenticado, lo redirige a la página de login */}
-        {authStatus !== 'authenticated' ? (
-          <Route path="auth/login/*" element={<LoginPage />} />
-        ) : (
-          <>
-            {/* Si el usuario está autenticado, mostrar las rutas privadas */}
-            <Route path="/*" element={
-              <AppPrivateRouter>
-                <AllIsSafeRouter />
-              </AppPrivateRouter>
-            } />
-          </>
-        )}
-        
-        {/* Redirigir a login si la ruta no coincide */}
-        <Route path="/*" element={<Navigate to="/auth/login" />} />
-      </Routes>
-    </>
+    <Routes>
+      {/* Rutas públicas */}
+      {authStatus === 'not-authenticated' && (
+        <>
+          <Route path="home" element={<HomePage />} />
+          <Route path="auth/login" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/home" />} />
+        </>
+      )}
+
+      {/* Rutas privadas */}
+      {authStatus === 'authenticated' && (
+        <>
+          <Route path="/*" element={
+            <AppPrivateRouter>
+              <AllIsSafeRouter />
+            </AppPrivateRouter>
+          } />
+          <Route path="*" element={<Navigate to="/" />} />
+        </>
+      )}
+    </Routes>
   );
 };
